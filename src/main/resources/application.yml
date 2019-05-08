@@ -1,0 +1,40 @@
+server:
+  port: 7777
+
+#配置spring相关
+spring:
+
+
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    username: ymu_2019@163.com
+    password: ymunetapi2019
+    protocol: smtp
+    properties:
+      mail.smtp.starttls.enable: true
+      mail.smtp.auth: true
+      mail.smtp.stattls.required: true
+
+
+  #配置freemarker
+  freemarker:
+    #模板文件引用相对路径下的page文件夹
+    #template-loader-path: file:./page
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    suffix: .ftl
+
+  servlet:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 10MB
+
+
+
