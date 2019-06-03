@@ -8,8 +8,8 @@ spring:
   mail:
     default-encoding: UTF-8
     host: smtp.163.com
-    username: ymu_2019@163.com
-    password: ymunetapi2019
+    username: 
+    password: 
     protocol: smtp
     properties:
       mail.smtp.starttls.enable: true
