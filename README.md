@@ -1,6 +1,6 @@
 # blog7 个人博客系统
     
-####说明：
+###说明：
    + 使用jdk8 + spring boot + druid + freemaker + sqlite + layui 
    + 第一版前台页面暂用开源的基于layui的模板：[http://vip-admin.com/product/9.html]: http://vip-admin.com/product/9.html
    + 第一版后台管理页面暂用开源的基于layui的后台模板：[http://vip-admin.com/product/1.html]: http://vip-admin.com/product/1.html
