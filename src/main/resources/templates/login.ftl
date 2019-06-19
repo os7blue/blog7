@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="">
   <meta name="description" content="">
-  <link rel="stylesheet" href="../res/layui/css/layui.css">
-  <link rel="stylesheet" href="../res/css/global.css">
+  <link rel="stylesheet" href="/res/layui/css/layui.css">
+  <link rel="stylesheet" href="/res/css/global.css">
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         </div>
       </form>
       <!-- 未登入状态 -->
-      <!--<span><a href="user/login.html">登入</a><a href="user/reg.html">注册</a></span>-->
+      <!--<span><a href="user/login.ftl">登入</a><a href="user/reg.html">注册</a></span>-->
 
       <!-- 登入后的状态 -->
       <!--<a class="avatar" href="user.html">
@@ -48,16 +48,12 @@
 
   <div class="fly-panel fly-panel-user" pad20>
     <div class="layui-tab layui-tab-brief">
-      <ul class="layui-tab-title">
-        <li class="layui-this">登入</li>
-        <li><a href="reg.html">注册</a></li>
-      </ul>
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
           <div class="layui-form layui-form-pane">
             <form method="post">
               <div class="layui-form-item">
-                <label for="L_email" class="layui-form-label">邮箱</label>
+                <label for="L_email" class="layui-form-label">用户名</label>
                 <div class="layui-input-inline">
                   <input type="text" id="L_email" name="email" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
@@ -68,25 +64,9 @@
                   <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
                 </div>
               </div>
-              <div class="layui-form-item">
-                <label for="L_vercode" class="layui-form-label">人类验证</label>
-                <div class="layui-input-inline">
-                  <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid">
-                  <span style="color: #c00;">1+1=?</span>
-                </div>
-              </div>
+
               <div class="layui-form-item">
                 <button class="layui-btn" lay-filter="*" lay-submit>立即登录</button>
-                <span style="padding-left:20px;">
-                  <a href="forget.html">忘记密码？</a>
-                </span>
-              </div>
-              <div class="layui-form-item fly-form-app">
-                <span>或者使用社交账号登入</span>
-                <a href="http://fly.layui.com:8098/app/qq" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-qq" title="QQ登入"></a>
-                <a href="http://fly.layui.com:8098/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登入"></a>
               </div>
             </form>
           </div>
@@ -106,14 +86,15 @@
   <p><a href="http://blog.vip-admin.com/" target="_blank">博客</a> 2017 &copy; <a href="https://www.vip-admin.com/" target="_blank">vip-admin.com</a></p>
 </div>
 
-<script src="../res/layui/layui.js"></script>
+<script src="/res/layui/layui.js"></script>
 <script>
 layui.config({
   version: "2.0.0"
-  ,base: '../res/mods/'
+  ,base: '/res/mods/'
 }).extend({
-  fly: 'index.ftl'
+  fly: 'index'
 }).use('fly');
+  
 </script>
 </body>
 </html>

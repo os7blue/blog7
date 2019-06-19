@@ -27,4 +27,6 @@ public class AdminPageController {
     public String gotoIndex(){
         return "admin/index";
     }
+
+
 }

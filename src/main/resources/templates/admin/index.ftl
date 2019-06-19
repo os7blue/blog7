@@ -78,7 +78,7 @@
                 <li class="layui-nav-item layui-nav-itemed"> 去除 layui-nav-itemed 即可关闭展开
                     <a href="javascript:;"><i class="layui-icon">&#xe628;</i>扩展</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" href-url="demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
+                        <dd><a href="javascript:;" href-url="demo/login.ftl"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
                         <dd><a href="javascript:;" href-url="demo/register.html"><i class="layui-icon">&#xe621;</i>注册页</a></dd>
                         <dd><a href="javascript:;" href-url="demo/login2.html"><i class="layui-icon">&#xe621;</i>登录页2</a></dd>
                         <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
