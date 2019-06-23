@@ -135,7 +135,7 @@
     </table>
 </div>
 
-<script type="text/javascript" src="frame/layui/layui.js"></script>
+<script type="text/javascript" src="/admin/frame/layui/layui.js"></script>
 <script type="text/javascript" src="/admin/frame/static/js/vip_comm.js"></script>
 <script type="text/javascript">
 layui.use(['layer','vip_nav'], function () {

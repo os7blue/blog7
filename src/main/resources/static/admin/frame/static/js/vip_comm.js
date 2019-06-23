@@ -5,7 +5,7 @@
 
 // 配置
 layui.config({
-    base: './frame/static/js/'  // 模块目录
+    base: '/admin/frame/static/js/'  // 模块目录
 }).extend({                     // 模块别名
     vip_nav: 'vip_nav'
     , vip_tab: 'vip_tab'

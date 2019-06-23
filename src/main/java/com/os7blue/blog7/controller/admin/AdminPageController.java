@@ -18,15 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPageController {
 
 
-    /**
-     * 后台管理主页的加载和模板内容的加载
-     *
-     * @return
-     */
-    @GetMapping(value = "/index")
-    public String gotoIndex(){
-        return "admin/index";
-    }
+
 
 
 }

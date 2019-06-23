@@ -3,7 +3,7 @@
  @Name: Fly社区主入口
 
  */
- 
+
 
 layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate','element'], function(exports){
   
@@ -404,7 +404,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
 
   //表单提交
   form.on('submit(*)', function(data){
-    alert(data);
+    console.log(data);
     var action = $(data.form).attr('action'), button = $(data.elem);
     gather.json(action, data.field, function(res){
       var end = function(){
@@ -467,5 +467,6 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
   });*/
 
   exports('fly', gather);
+
 });
 

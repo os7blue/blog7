@@ -81,6 +81,9 @@ public class DruidConfiguration {
         datasource.setTestOnReturn(testOnReturn);
         datasource.setPoolPreparedStatements(poolPreparedStatements);
         datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+
+        //使用sqlite时需要单独配置该属性为0
+        datasource.setMaxOpenPreparedStatements(0);
         try {
             datasource.setFilters(filters);
         } catch (SQLException e) {
