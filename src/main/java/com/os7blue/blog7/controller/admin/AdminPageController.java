@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
   * @CreateDate:     19-6-17 上午2:08
   * @UpdateUser:     os7blue
   * @UpdateDate:     19-6-17 上午2:08
-  * @UpdateRemark:   
+  * @UpdateRemark:
   * @Version:        1.0
 */
 @Controller
@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPageController {
 
 
-
+    @GetMapping(value = "/createArticle")
+    public String gotoCreateArticle() {
+        return "admin/createArticle";
+    }
 
 
 }
