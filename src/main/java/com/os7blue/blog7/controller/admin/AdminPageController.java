@@ -23,5 +23,12 @@ public class AdminPageController {
         return "admin/createArticle";
     }
 
+    @GetMapping(value = "/test")
+    public String gotoTest() {
+        return "admin/test";
+    }
+
+
+
 
 }

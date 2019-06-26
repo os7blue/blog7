@@ -1,159 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>首页 · 后台模板 HTML</title>
-    <link rel="stylesheet" href="/admin/frame/layui/css/layui.css">
-    <link rel="stylesheet" href="/admin/frame/static/css/style.css">
-    <link rel="icon" href="/admin/frame/static/image/code.png">
+	<meta charset="UTF-8">
+	<meta content="text/html;charset=UTF-8"/>
+	<title>fsLayui2前端快速开发框架</title>
+	<meta name="keywords" content="fsLayuiPlugin,fsLayui,layui,layuiPlugin,layui插件,layui快速开发插件" />
+    <meta name="description" content="fsLayui2是一个前端快速开发框架，支持数据表格增删改查操作，提供通用的组件，通过配置html实现数据请求，减少前端js重复开发的工作。目前支持单数据表格、多数据表格、树+数据表格、联动数据表格、富文本编辑器、下拉框联动、数据字典功能、表格编辑和提交等。" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv ="Pragma" content = "no-cache"/>
+	<meta http-equiv="Cache-Control" content="no cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no"/>
+	<meta name="author" content="fallsea"/>
+	<link rel="icon" type="image/png" href="/admin/images/favicon.ico" />
+	<link href="/admin/plugins/pace/themes/pink/pace-theme-flash.css" rel="stylesheet"/>
+	<script src="/admin/plugins/pace/pace.min.js"></script>
+	<link href="/admin/plugins/contextMenu/jquery.contextMenu.min.css" rel="stylesheet"/>
+	<link href="/admin/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="/admin/plugins/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css"/>
+	<link href="/admin/plugins/toastr/toastr.min.css" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="/admin/plugins/layui/css/layui.css"/>
+	<link rel="stylesheet" href="/admin/css/admin.css">
+	<script type="text/javascript" src="/admin/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/admin/plugins/encrypt/jsencrypt.min.js"></script>
+	<script src="/admin/plugins/contextMenu/jquery.contextMenu.min.js"></script>
+	<script type="text/javascript" src="/admin/plugins/ztree/js/jquery.ztree.all.min.js"></script>
+	<script src="/admin/plugins/toastr/toastr.min.js"></script>
+	<script type="text/javascript" src="/admin/plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="/admin/plugins/frame/js/fsDict.js?v=2.3.0"></script>
+	<script type="text/javascript" src="/admin/plugins/frame/js/fs.js?v=2.3.0"></script>
+	<script type="text/javascript" src="/admin/plugins/frame/js/main.js"></script>
 </head>
-<body>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header custom-header">
 
-<!-- layout admin -->
-<div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
-    <!-- header -->
-    <div class="layui-header my-header">
-        <a href="index.html">
-            <!--<img class="my-header-logo" src="" alt="logo">-->
-            <div class="my-header-logo">后台模板 HTML</div>
-        </a>
-        <div class="my-header-btn">
-            <button class="layui-btn layui-btn-small btn-nav"><i class="layui-icon">&#xe65f;</i></button>
-        </div>
-
-        <!-- 顶部左侧添加选项卡监听 -->
-        <ul class="layui-nav" lay-filter="side-top-left">
-            <!--<li class="layui-nav-item"><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon">&#xe621;</i>基础</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>
-                </dl>
-            </li>-->
-        </ul>
-
-        <!-- 顶部右侧添加选项卡监听 -->
-        <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
-            <li class="layui-nav-item"><a href="javascript:;" class="pay" href-url="">支持作者</a></li>
-            <li class="layui-nav-item">
-                <a class="name" href="javascript:;"><i class="layui-icon">&#xe629;</i>主题</a>
-                <dl class="layui-nav-child">
-                    <dd data-skin="0"><a href="javascript:;">默认</a></dd>
-                    <dd data-skin="1"><a href="javascript:;">纯白</a></dd>
-                    <dd data-skin="2"><a href="javascript:;">蓝白</a></dd>
-                </dl>
-            </li>
-            <li class="layui-nav-item">
-                <a class="name" href="javascript:;"><img src="/admin/frame/static/image/code.png" alt="logo"> Admin </a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
-                    <dd><a href="/"><i class="layui-icon">&#x1006;</i>退出</a></dd>
-                </dl>
-            </li>
-        </ul>
-
-    </div>
-    <!-- side -->
-    <div class="layui-side my-side">
-        <div class="layui-side-scroll">
-            <!-- 左侧主菜单添加选项卡监听 -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="side-main">
-                <!--<li class="layui-nav-item"> 去除 layui-nav-itemed 即可关闭展开
-                    <a href="javascript:;"><i class="layui-icon">&#xe620;</i>基础</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/table.html"><i class="layui-icon">&#xe621;</i>表格</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tab-card.html"><i class="layui-icon">&#xe621;</i>选项卡</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/progress-bar.html"><i class="layui-icon">&#xe621;</i>进度条</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/folding-panel.html"><i class="layui-icon">&#xe621;</i>折叠面板</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/auxiliar.html"><i class="layui-icon">&#xe621;</i>辅助元素</a></dd>
-                    </dl>
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item slide-sidebar" lay-unselect>
+                    <a href="javascript:;" class="icon-font"><i class="ai ai-menufold"></i></a>
                 </li>
-                <li class="layui-nav-item layui-nav-itemed"> 去除 layui-nav-itemed 即可关闭展开
-                    <a href="javascript:;"><i class="layui-icon">&#xe628;</i>扩展</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="javascript:;" href-url="demo/login.ftl"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/register.html"><i class="layui-icon">&#xe621;</i>注册页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/login2.html"><i class="layui-icon">&#xe621;</i>登录页2</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/add-edit.html"><i class="layui-icon">&#xe621;</i>添加-修改</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/data-table.html"><i class="layui-icon">&#xe621;</i>data-table 表格页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tree-table.html"><i class="layui-icon">&#xe621;</i>Tree table树表格页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/404.html"><i class="layui-icon">&#xe621;</i>404页</a></dd>
-                        <dd><a href="javascript:;" href-url="demo/tips.html"><i class="layui-icon">&#xe621;</i>提示页</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item"><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ad6ba602ae228be2222ddb804086e0cfa42da3d74e34b383b665c2bec1adfc6e"><i class="layui-icon">&#xe61e;</i>加入群下载源码</a></li>-->
             </ul>
 
-        </div>
-    </div>
-    <!-- body -->
-    <div class="layui-body my-body">
-        <div class="layui-tab layui-tab-card my-tab" lay-filter="card" lay-allowClose="true">
-            <ul class="layui-tab-title">
-                <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>欢迎页</span></li>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">FallSea</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">帮助中心</a></dd>
+                        <dd><a href="login.html">退出</a></dd>
+                    </dl>
+                </li>
             </ul>
-            <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                    <iframe id="iframe" src="demo/welcome.html" frameborder="0"></iframe>
+        </div>
+
+        <div class="layui-side custom-admin">
+            <div class="layui-side-scroll">
+
+                <div class="custom-logo">
+                    <img src="/admin/images/logo.png" alt=""/>
+                    <h1>fsLayui2</h1>
                 </div>
+                <ul class="layui-nav layui-nav-tree fsLeftMenu"  lay-filter="fsLeftMenu" lay-shrink="all" id="fsLeftMenu">
+
+                </ul>
+
             </div>
         </div>
+
+        <div class="layui-body">
+             <div class="layui-tab app-container fsTab" lay-filter="fsTab" lay-allowClose="true">
+                <ul id="fsTabMenu" class="layui-tab-title custom-tab">
+									<li class="layui-this"><i class="layui-icon">&#xe68e;</i><em>控制台</em><p class="layui-tab-close" style="display: none;"></p></li>
+								</ul>
+                <div id="appTabPage" class="layui-tab-content">
+									<div class="layui-tab-item layui-show" lay-id="1">
+										<iframe src="views/home/index.html?v=2.1.1" frameborder="0"></iframe>
+									</div>
+								</div>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <p>© 2017-2019 <a href="https://www.wueasy.com" target="_blank">wueasy 开源</a> <a  target="_blank" href="https://github.com/wueasy/fslayui/releases"><img src="https://camo.githubusercontent.com/24482e393a2d2494871a793795ce115a7c0a6e00/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f72656c656173652f7775656173792f66736c617975692e737667" alt="" data-canonical-src="https://img.shields.io/github/release/wueasy/fslayui.svg" style="max-width:100%;"></a> <a target="_blank" href="https://github.com/wueasy/fslayui/blob/master/LICENSE"><img src="https://camo.githubusercontent.com/a2195b8efb19313370ef012d91b9f538a82ada7b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4147504c332e302d79656c6c6f772e7376673f7374796c653d666c61742d737175617265" alt="" data-canonical-src="https://img.shields.io/badge/License-AGPL3.0-yellow.svg?style=flat-square" style="max-width:100%;"></a></p>
+        </div>
+
+        <div class="mobile-mask"></div>
     </div>
-    <!-- footer -->
-    <div class="layui-footer my-footer">
-        <p><a href="http://vip-admin.com" target="_blank">vip-admin后台模板v1.8.0</a>&nbsp;&nbsp;&&nbsp;&nbsp;<a href="http://vip-admin.com/index/gather/index.html" target="_blank">vip-admin管理系统v1.2.0</a></p>
-        <p>2017 © copyright 蜀ICP备17005881号</p>
-    </div>
-</div>
-
-<!-- pay -->
-<div class="my-pay-box none">
-    <div><img src="/admin/frame/static/image/zfb.png" alt="支付宝"><p>支付宝</p></div>
-    <div><img src="/admin/frame/static/image/wx.png" alt="微信"><p>微信</p></div>
-</div>
-
-<!-- 右键菜单 -->
-<div class="my-dblclick-box none">
-    <table class="layui-tab dblclick-tab">
-        <tr class="card-refresh">
-            <td><i class="layui-icon">&#x1002;</i>刷新当前标签</td>
-        </tr>
-        <tr class="card-close">
-            <td><i class="layui-icon">&#x1006;</i>关闭当前标签</td>
-        </tr>
-        <tr class="card-close-all">
-            <td><i class="layui-icon">&#x1006;</i>关闭所有标签</td>
-        </tr>
-    </table>
-</div>
-
-<script type="text/javascript" src="/admin/frame/layui/layui.js"></script>
-<script type="text/javascript" src="/admin/frame/static/js/vip_comm.js"></script>
-<script type="text/javascript">
-layui.use(['layer','vip_nav'], function () {
-
-    // 操作对象
-    var layer       = layui.layer
-        ,vipNav     = layui.vip_nav
-        ,$          = layui.jquery;
-
-    // 顶部左侧菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-    vipNav.top_left('/admin/json/nav_top_left.json','side-top-left',false);
-    // 主体菜单生成 [请求地址,过滤ID,是否展开,携带参数]
-    vipNav.main('/admin/json/nav_main.json','side-main',true);
-
-    // you code ...
-
-
-});
-</script>
 </body>
 </html>
