@@ -3,7 +3,7 @@
  @Name: Fly社区主入口
 
  */
-
+ 
 
 layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate','element'], function(exports){
   
@@ -19,7 +19,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
   
   //阻止IE7以下访问
   if(device.ie && device.ie < 8){
-    layer.alert('如果您非得使用ie浏览blog7，那么请使用ie8+');
+    layer.alert('如果您非得使用ie浏览Fly社区，那么请使用ie8+');
   }
   
   layui.focusInsert = function(obj, str){
@@ -404,7 +404,6 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
 
   //表单提交
   form.on('submit(*)', function(data){
-    console.log(data);
     var action = $(data.form).attr('action'), button = $(data.elem);
     gather.json(action, data.field, function(res){
       var end = function(){
@@ -467,6 +466,5 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
   });*/
 
   exports('fly', gather);
-
 });
 

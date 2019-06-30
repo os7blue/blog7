@@ -18,14 +18,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPageController {
 
 
-    @GetMapping(value = "/createArticle")
+    /**
+     * 新建文章页面
+     * @return
+     */
+    @GetMapping(value = "/articleInfo/createArticle")
     public String gotoCreateArticle() {
-        return "admin/createArticle";
+        return "admin/articleInfo/createArticle";
     }
 
     @GetMapping(value = "/test")
     public String gotoTest() {
         return "admin/test";
+    }
+
+    /**
+     * 文章管理页面
+     * @return
+     */
+    @GetMapping(value = "/articleInfo/index")
+    public String gotoArticleInfoIndex(){
+        return "admin/articleInfo/index";
     }
 
 
