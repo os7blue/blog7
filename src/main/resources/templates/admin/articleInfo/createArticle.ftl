@@ -30,6 +30,30 @@
         </div>
     </div>
 
+
+    <div class="layui-form-item">
+
+        <div class="layui-inline">
+            <label class="layui-form-label">封面图</label>
+            <div class="layui-input-inline" >
+                <div class="layui-upload-drag" id="test10">
+                    <i class="layui-icon"></i>
+                    <p>点击上传，或将文件拖拽到此处</p>
+                </div>
+            </div>
+            <div class="layui-input-inline" >
+                    <img class="layui-upload-img" id="demo1" style="width: 190px;height: 156px;">
+                    <p id="demoText"></p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
     <div class="layui-form-item">
         <label class="layui-form-label">文章内容</label>
         <div id="editor" class="layui-input-block">
@@ -52,10 +76,27 @@
 
 <script src="/admin/frame/layui/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'layer','jquery'], function(){
+    layui.use(['form', 'layer','upload','jquery'], function(){
         var form = layui.form
                 ,layer = layui.layer
-                ,$=layui.jquery;
+                ,$=layui.jquery
+                ,upload = layui.upload;
+
+
+        //拖拽上传
+        upload.render({
+            elem: '#test10'
+            ,url: '/upload/'
+            ,done: function(res){
+                console.log(res)
+            }
+            ,before: function(obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo1').attr('src', result);
+                })
+            }
+        });
 
                 var E = window.wangEditor;
         var editor = new E('#editor');

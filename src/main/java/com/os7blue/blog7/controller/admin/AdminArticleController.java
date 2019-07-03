@@ -17,12 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController("/article")
 public class AdminArticleController {
 
-
-    public String upLoad(@RequestParam("file") MultipartFile file){
-
-        FileUploadUtil.fileUpload(file,"");
-
-    }
+//
+//    public String upLoad(@RequestParam("file") MultipartFile file){
+//
+//        FileUploadUtil.fileUpload(file,"");
+//
+//    }
 
 
 }
