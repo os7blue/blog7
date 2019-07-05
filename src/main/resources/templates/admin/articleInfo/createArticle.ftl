@@ -86,7 +86,7 @@
         //拖拽上传
         upload.render({
             elem: '#test10'
-            ,url: '/upload/'
+            ,url: '/admin/upload/afterUploadGetUrl'
             ,done: function(res){
                 console.log(res)
             }
