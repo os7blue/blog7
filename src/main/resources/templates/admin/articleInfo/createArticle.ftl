@@ -63,7 +63,7 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button class="layui-btn" lay-submit="" lay-filter="subNewArticle">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -83,6 +83,8 @@
                 ,upload = layui.upload;
 
 
+
+        var titlePic = "";
         //拖拽上传
         upload.render({
             elem: '#test10'
@@ -91,6 +93,7 @@
                 //如果上传失败
                 if(res.code === 1){
                     $('#demo1').attr('src', res.data.url);
+                    titlePic=res.data.url;
                     return layer.msg('封面图上传成功');
                 }
                 var demoText = $('#demoText');
@@ -110,10 +113,46 @@
                 var E = window.wangEditor;
         var editor = new E('#editor');
         // 或者 var editor = new E( document.getElementById('editor') )
-        editor.customConfig.uploadImgShowBase64 = true;
+        editor.customConfig.uploadImgServer =  "/admin/upload/afterUploadGetUrl";
+        editor.customConfig.uploadImgMaxLength = 1;
+        editor.customConfig.uploadFileName = 'file';
+
+
+        editor.customConfig.uploadImgHooks = {
+            // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
+            // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
+            customInsert: function (insertImg, result, editor) {
+
+                // 图片上传并返回结果，自定义插入图片的事件（而不是编辑器自动插入图片！！！）
+                // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
+
+                // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+                var url = result.data.url;
+                layer.msg('上传成功');
+                insertImg(url);
+
+
+                // result 必须是一个 JSON 格式字符串！！！否则报错
+            }
+        };
+
         editor.create();
 
 
+
+        //提交文章
+        form.on("submit(subNewArticle)",function (data) {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim', //加上边框
+                area: ['80%', '80%'], //宽高
+                content: editor.txt.html()
+            });
+
+
+            return false;
+
+        });
 
 
 
