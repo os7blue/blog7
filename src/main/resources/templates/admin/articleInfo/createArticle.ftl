@@ -88,13 +88,22 @@
             elem: '#test10'
             ,url: '/admin/upload/afterUploadGetUrl'
             ,done: function(res){
-                console.log(res)
+                //如果上传失败
+                if(res.code === 1){
+                    $('#demo1').attr('src', res.data.url);
+                    return layer.msg('封面图上传成功');
+                }
+                var demoText = $('#demoText');
+                return demoText.html('<span style="color: #FF5722;">上传失败</span>');
+                //上传成功
             }
-            ,before: function(obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result);
-                })
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span>');
+                // demoText.find('.demo-reload').on('click', function(){
+                //     uploadInst.upload();
+                // });
             }
         });
 

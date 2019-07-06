@@ -1,6 +1,9 @@
 package com.os7blue.blog7.service;
 
+import com.os7blue.blog7.entity.FileInfo;
+import com.os7blue.blog7.mapper.AdminUploadMapper;
 import com.os7blue.blog7.util.BaseUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +23,10 @@ import java.time.LocalDateTime;
 */
 @Service
 public class AdminUploadService {
+
+
+    @Autowired
+    private AdminUploadMapper adminUploadMapper;
 
     /**
      * 保存上传文件目录的真实路径
@@ -63,13 +70,22 @@ public class AdminUploadService {
         try {
             //将经过处理的文件保存到预设的文件夹
             file.transferTo(savePath);
-            //保存成功后将文件信息保存到数据库.
+
+
         } catch (IOException e) {
             e.printStackTrace();
             return "";
         }
 
         return fileUrl;
+
+
+
+    }
+
+    public Integer saveFileInfo(FileInfo fileInfo){
+
+        return adminUploadMapper.insertOneFileInfo(fileInfo);
 
     }
 }
