@@ -1,5 +1,12 @@
 package com.os7blue.blog7.controller.admin;
 
+import com.os7blue.blog7.entity.Article;
+import com.os7blue.blog7.model.ReturnModel;
+import com.os7blue.blog7.service.admin.AdminArticleService;
+import lombok.var;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,13 +18,33 @@ import org.springframework.web.bind.annotation.RestController;
   * @UpdateRemark:
   * @Version:        1.0
 */
-@RestController("/article")
+@RestController
+@RequestMapping(value = "/admin/article")
 public class AdminArticleController {
+
+
+    @Autowired
+    private AdminArticleService adminArticleService;
 
 
 //    public String upLoad(@RequestParam("file") MultipartFile file){
 //        System.out.println(file);
 //    }
+
+    @PostMapping(value = "/createArticle")
+    public ReturnModel createArticle(Article article){
+        var rm = new ReturnModel();
+
+        Integer status = adminArticleService.GetArticleIdAfterCreateArticle(article);
+
+        if (status!=0){
+            rm.setCode(1);
+            rm.setData(article.getId());
+            return rm;
+        }
+        rm.setCode(0);
+        return rm;
+    }
 
 
 }

@@ -2,7 +2,7 @@ package com.os7blue.blog7.controller.admin;
 
 import com.os7blue.blog7.entity.FileInfo;
 import com.os7blue.blog7.model.ReturnModel;
-import com.os7blue.blog7.service.AdminUploadService;
+import com.os7blue.blog7.service.admin.AdminUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +34,8 @@ public class AdminUploadController {
      * @param file
      * @return
      */
-    @PostMapping(value = "/afterUploadGetUrl")
-    public ReturnModel afterUploadGetUrl(MultipartFile file){
+    @PostMapping(value = "/getUrlAfterUpload")
+    public ReturnModel getUrlAfterUpload(MultipartFile file){
 
         ReturnModel rm = new ReturnModel();
 

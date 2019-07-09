@@ -1,4 +1,4 @@
-package com.os7blue.blog7.service;
+package com.os7blue.blog7.service.admin;
 
 
 import com.os7blue.blog7.entity.User;

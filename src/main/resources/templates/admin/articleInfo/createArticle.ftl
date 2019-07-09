@@ -84,13 +84,13 @@
 
 
 
-        var titlePic = "";
-        //拖拽上传
+        var titlePic = "/res/images/defaultTitPic.jpg";
+        //拖拽上传封面图片
         upload.render({
             elem: '#test10'
-            ,url: '/admin/upload/afterUploadGetUrl'
+            ,url: '/admin/upload/getUrlAfterUpload'
             ,done: function(res){
-                //如果上传失败
+                //上传成功
                 if(res.code === 1){
                     $('#demo1').attr('src', res.data.url);
                     titlePic=res.data.url;
@@ -98,7 +98,6 @@
                 }
                 var demoText = $('#demoText');
                 return demoText.html('<span style="color: #FF5722;">上传失败</span>');
-                //上传成功
             }
             ,error: function(){
                 //演示失败状态，并实现重传
@@ -113,7 +112,7 @@
                 var E = window.wangEditor;
         var editor = new E('#editor');
         // 或者 var editor = new E( document.getElementById('editor') )
-        editor.customConfig.uploadImgServer =  "/admin/upload/afterUploadGetUrl";
+        editor.customConfig.uploadImgServer =  "/admin/upload/getUrlAfterUpload";
         editor.customConfig.uploadImgMaxLength = 1;
         editor.customConfig.uploadFileName = 'file';
 
@@ -127,7 +126,13 @@
                 // insertImg 是插入图片的函数，editor 是编辑器对象，result 是服务器端返回的结果
 
                 // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
+
                 var url = result.data.url;
+
+                if (titlePic==="/res/images/defaultTitPic.jpg"){
+                    titlePic=url;
+                }
+
                 layer.msg('上传成功');
                 insertImg(url);
 
@@ -142,12 +147,31 @@
 
         //提交文章
         form.on("submit(subNewArticle)",function (data) {
-            layer.open({
-                type: 1,
-                skin: 'layui-layer-rim', //加上边框
-                area: ['80%', '80%'], //宽高
-                content: editor.txt.html()
+            // layer.open({
+            //     type: 1,
+            //     skin: 'layui-layer-rim', //加上边框
+            //     area: ['80%', '80%'], //宽高
+            //     content: editor.txt.html()
+            // });
+
+            console.log(data);
+
+
+            var param = {
+                title       :   data.field.title,
+                titleImg    :   titlePic,
+                content     :   editor.txt.html()
+            };
+            
+            $.post("/admin/article/createArticle",param,function (res) {
+                if (res.code===1){
+                    layer.msg("文章发布成功");
+                    return;
+                }
+                layer.msg("发生错误,请重试");
+
             });
+
 
 
             return false;

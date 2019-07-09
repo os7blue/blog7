@@ -18,6 +18,13 @@ public class Article {
 
     private String title;
 
+    private String titleImg;
+
+    /**
+     * 分类id
+     */
+    private Integer parentId;
+
     private String content;
 
     private long createTime;
@@ -26,7 +33,13 @@ public class Article {
 
     private String mark;
 
+    /**
+     * 标签 暂不使用 第二版使用
+     */
     private String label;
 
+    /**
+     *状态
+     */
     private Integer status;
 }
