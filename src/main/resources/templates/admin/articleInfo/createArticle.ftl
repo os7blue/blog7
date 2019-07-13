@@ -64,7 +64,7 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit="" lay-filter="subNewArticle">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button type="btn" lay-submit class="layui-btn layui-btn-primary" lay-filter="previewBtn">预览</button>
         </div>
     </div>
 </form>
@@ -144,6 +144,22 @@
         editor.create();
 
 
+        //预览
+        form.on("submit(previewBtn)",function (data) {
+            layer.open({
+                type: 1,
+                title:'文章内容预览',
+                skin: 'layui-layer-lan', //加上边框
+                maxmin:true,
+                area: ['80%', '80%'], //宽高
+                content: editor.txt.html()
+            });
+
+            return false;
+
+        });
+
+
 
         //提交文章
         form.on("submit(subNewArticle)",function (data) {
@@ -165,7 +181,18 @@
             
             $.post("/admin/article/createArticle",param,function (res) {
                 if (res.code===1){
-                    layer.msg("文章发布成功");
+                    // layer.open({
+                    //     type: 1,
+                    //     title:'文章发布成功',
+                    //     skin: 'layui-layer-lan', //加上边框
+                    //     area: ['17%', '17%'],
+                    //     content: "<a href='/article/"+res.data+"' target='_blank'>点击预览</a>"
+                    // });
+                    layer.confirm('是否打开该文章详情页面?', {icon: 3, title:'文章发布成功'}, function(index){
+                        //do something
+                        window.open("/article/"+res.data);
+                        layer.close(index);
+                    });
                     return;
                 }
                 layer.msg("发生错误,请重试");
