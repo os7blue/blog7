@@ -1,47 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>首页</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <link rel="stylesheet" href="/res/layui/css/layui.css">
-  <link rel="stylesheet" href="/res/css/global.css">
-</head>
-<body>
-
-<div class="header">
-  <div class="main">
-    <a class="logo" href="javascript:void(0);" title="">os7blue个人博客</a>
-    <div class="nav">
-      <a href="javascript:void(0);">前端</a>
-      <a href="javascript:void(0);">后台</a>
-    </div>
-
-    <div class="nav-user ">
-      <form class="layui-form fly-article-search" action="" >
-        <div class="layui-input-inline">
-          <div class="layui-input-inline">
-            <input type="text" name="data" required lay-verify="required" placeholder="搜索···" autocomplete="off" class="layui-input" />
-          </div>
-          <!--<div class="layui-input-inline">
-            <button class="layui-btn layui-btn-normal layui-icon" lay-submit>&#xe615;</button>
-          </div>-->
-        </div>
-      </form>
-      <!-- 未登入状态 -->
-      <!--<span><a href="user/login.ftl">登入</a><a href="user/reg.html">注册</a></span>-->
-
-      <!-- 登入后的状态 -->
-      <!--<a class="avatar" href="user.html">
-        <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">
-        <cite>贤心</cite>
-        <i>VIP2</i>
-      </a>-->
-    </div>
-  </div>
-</div>
+<#include "site/header.ftl">
 
 <div class="main layui-anim layui-anim-upbit layui-clear">
   <div class="layui-row layui-col-space15">
@@ -55,6 +12,9 @@
           <div>条目2</div>
           <div>条目3</div>
           <div>条目4</div>
+          <div>条目5</div>
+          <div>条目5</div>
+          <div>条目5</div>
           <div>条目5</div>
         </div>
       </div>
@@ -75,204 +35,33 @@
       <!-- list -->
       <ul class="fly-list">
 
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
+
+
+
+        <#list atl as at>
+          <li class="fly-list-li">
+            <a href="/article/${at.id}" target="_blank" class="fly-list-avatar">
+              <img src="${at.titleImg}" alt="">
+            </a>
+            <h2 class="fly-tip">
+              <a href="/article/${at.id}" target="_blank">${at.title}</a>
+            </h2>
+            <div class="fly-badge">
+              <a href="/" class="layui-badge-rim layui-bg-black">精贴</a>
+              <a href="/" class="layui-badge-rim layui-bg-red">置顶</a>
+            </div>
+            <div class="fly-content-text">${at.content?substring(0,7)}</div>
+            <p class="layui-elip">
+              <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
+              <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
+              <span><i class="layui-icon">&#xe857;</i> 其他</span>
+              <span class="fly-list-hint">
             <i class="layui-icon" title="人气">&#xe756;</i> 6830
             <i class="layui-icon" title="议论">&#xe63a;</i> 317
           </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
-        <li class="fly-list-li">
-          <a href="user.html" class="fly-list-avatar">
-            <img src="/res/images/blog.jpg" alt="">
-          </a>
-          <h2 class="fly-tip">
-            <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          </h2>
-          <div class="fly-badge">
-            <span class="layui-badge-rim layui-bg-black">精贴</span>
-            <span class="layui-badge-rim layui-bg-red">置顶</span>
-          </div>
-          <div class="fly-content-text">生活中保存了不少的网站,以供以后快捷的浏览信息,这个是我生活中保存的一些我喜欢的网站收藏</div>
-          <p class="layui-elip">
-            <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
-            <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
-            <span><i class="layui-icon">&#xe857;</i> 其他</span>
-          <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
-          </span>
-          </p>
-        </li>
+            </p>
+          </li>
+        </#list>
 
       </ul>
       <!-- more -->
@@ -384,22 +173,22 @@
           </dd>
         </dl>
       </div>-->
-      <!-- tag -->
-      <div class="fly-panel fly-list-one fly-tag">
-        <h3 class="fly-panel-title">标签云</h3>
-        <div class="fly-panel-content">
-          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>
-          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>
-        </div>
-      </div>
+<#--      <!-- tag &ndash;&gt;-->
+<#--      <div class="fly-panel fly-list-one fly-tag">-->
+<#--        <h3 class="fly-panel-title">标签云</h3>-->
+<#--        <div class="fly-panel-content">-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>-->
+<#--          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>-->
+<#--        </div>-->
+<#--      </div>-->
       <!-- 最近综合 -->
       <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">最近综合</dt>
@@ -552,44 +341,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <p>
-    <a href="http://fly.layui.com/" target="_blank">layui</a>
-    <a href="http://layim.layui.com/" target="_blank">layim</a>
-    <a href="http://layer.layui.com/" target="_blank">layer</a>
-  </p>
-  <p><a href="http://blog.vip-admin.com/" target="_blank">博客</a> 2017 &copy; <a href="https://www.vip-admin.com/" target="_blank">vip-admin.com</a></p>
-</div>
-
-<div class="city-box layui-hide">
-  <div class="city-content-box padding-10">
-    <form class="layui-form city-search-box" action="" >
-      <div class="layui-input-inline">
-        <div class="layui-input-inline">
-          <input type="text" name="city" required lay-verify="required" placeholder="输入城市" autocomplete="off" class="layui-input" />
-        </div>
-        <div class="layui-input-inline">
-          <button class="layui-btn layui-btn-normal" lay-submit lay-filter="city-submit">确定</button>
-        </div>
-      </div>
-    </form>
-    <span class="layui-badge-rim">北京</span>
-    <span class="layui-badge-rim">上海</span>
-    <span class="layui-badge-rim">杭州</span>
-    <span class="layui-badge-rim">深圳</span>
-    <span class="layui-badge-rim">广州</span>
-    <span class="layui-badge-rim">成都</span>
-  </div>
-</div>
-
-<script src="/res/layui/layui.js"></script>
-<script>
-layui.config({
-  version: "2.0.0"
-  ,base: '/res/mods/'
-}).extend({
-  fly: 'index'
-}).use('fly');
-</script>
-</body>
-</html>
+<#include "site/footer.ftl">

@@ -4,6 +4,7 @@ package com.os7blue.blog7.controller.visitor;
 import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.entity.User;
 import com.os7blue.blog7.model.ReturnModel;
+import com.os7blue.blog7.service.ArticleService;
 import com.os7blue.blog7.service.admin.AdminLoginService;
 import com.os7blue.blog7.util.UserStatus;
 import lombok.var;
@@ -52,7 +53,13 @@ public class VisitorPageController {
      * @return
      */
     @GetMapping(value = {"/","/index"})
-    public String gotoIndex(){
+    public String gotoIndex(Map model){
+
+        var list = articleService.getArticleListAccordingToConditions();
+
+        model.put("atl",list);
+
+
         return "index";
     }
 
