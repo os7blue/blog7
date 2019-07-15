@@ -2,6 +2,7 @@ package com.os7blue.blog7.service;
 
 import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.mapper.ArticleMapper;
+import com.os7blue.blog7.model.ViewArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +22,11 @@ public class ArticleService {
 
 
     /**
-     * 根据不同的条件获取相应的
+     * 根据不同的条件获取相应的文章简介列表 如 分类列表 搜索列表
      * @return
      */
-    public List<Article> getArticleListAccordingToConditions() {
+    public List<ViewArticle> getViewArticleListAccordingToConditions(Integer begin, Integer parentId, String searchValue) {
 
-        return articleMapper.selectArticleListAccordingToConditions();
+        return articleMapper.selectViewArticleListAccordingToConditions(begin,parentId,searchValue);
     }
 }

@@ -57,7 +57,7 @@
               <span><i class="layui-icon">&#xe857;</i> 其他</span>
               <span class="fly-list-hint">
             <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> 317
+            <i class="layui-icon" title="议论">&#xe63a;</i> ${at.commentTotal}
           </span>
             </p>
           </li>

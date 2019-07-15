@@ -23,6 +23,14 @@ public class Comment {
 
     private String content;
 
+    private String header;
+
+    private long createTime;
+
+    private Integer status;
+
+    private Integer parentId;
+
 
 
 

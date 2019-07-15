@@ -55,7 +55,7 @@ public class VisitorPageController {
     @GetMapping(value = {"/","/index"})
     public String gotoIndex(Map model){
 
-        var list = articleService.getArticleListAccordingToConditions();
+        var list = articleService.getViewArticleListAccordingToConditions(0,null,null);
 
         model.put("atl",list);
 
