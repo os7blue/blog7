@@ -29,4 +29,8 @@ public class ArticleService {
 
         return articleMapper.selectViewArticleListAccordingToConditions(begin,parentId,searchValue);
     }
+
+    public void addOneViews(Integer id) {
+        articleMapper.updateOneArticleViews(id);
+    }
 }

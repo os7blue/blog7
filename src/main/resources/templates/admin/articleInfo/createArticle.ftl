@@ -84,7 +84,7 @@
 
 
 
-        var titlePic = "/res/images/defaultTitPic.jpg";
+        var titlePic = "/res/images/code.png";
         //拖拽上传封面图片
         upload.render({
             elem: '#test10'
@@ -129,7 +129,7 @@
 
                 var url = result.data.url;
 
-                if (titlePic==="/res/images/defaultTitPic.jpg"){
+                if (titlePic==="/res/images/code.png"){
                     titlePic=url;
                 }
 

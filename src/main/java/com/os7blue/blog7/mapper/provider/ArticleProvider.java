@@ -27,7 +27,6 @@ public class ArticleProvider {
                 if (parentId!=null){
                     WHERE("a.parentId = #{parentId}");
                 }
-                System.out.println(ArticleEnum.DISABLE);
 
                 if (searchValue!=null){
                     WHERE("a.title LIKE %#{searchValue}%");
@@ -36,6 +35,6 @@ public class ArticleProvider {
 
 
             }
-        }.toString()+" LIMIT " + begin * 12 +",12";
+        }.toString(); //+" LIMIT " + begin * 12 +",12"
     }
 }

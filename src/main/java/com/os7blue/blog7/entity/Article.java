@@ -33,6 +33,8 @@ public class Article {
 
     private String mark;
 
+    private Integer views;
+
     /**
      * 标签 暂不使用 第二版使用
      */

@@ -67,6 +67,7 @@ public class VisitorPageController {
 
     @GetMapping(value = "/article/{id}")
     public String gotoDetail(@PathVariable Integer id, Map model){
+        articleService.addOneViews(id);
         Article at = articleService.getArticleDetailById(id);
         model.put("at",at);
         return "detail";

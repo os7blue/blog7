@@ -50,14 +50,21 @@
               <a href="/" class="layui-badge-rim layui-bg-black">精贴</a>
               <a href="/" class="layui-badge-rim layui-bg-red">置顶</a>
             </div>
-            <div class="fly-content-text">${at.content?substring(0,7)}</div>
+            <#if at.content?split("pre")?size!=0>
+              <div class="fly-content-text">${at.content?split("pre")[0]}</div>
+
+            <#else >
+              <div class="fly-content-text">${at.content?substring(0,7)}</div>
+
+            </#if>
+
             <p class="layui-elip">
-              <span><i class="layui-icon">&#xe612;</i> <a href="user.html">某某某</a></span>
+              <span><i class="layui-icon">&#xe612;</i> <a href="/about" target="_blank">某某某</a></span>
               <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
               <span><i class="layui-icon">&#xe857;</i> 其他</span>
               <span class="fly-list-hint">
-            <i class="layui-icon" title="人气">&#xe756;</i> 6830
-            <i class="layui-icon" title="议论">&#xe63a;</i> ${at.commentTotal}
+            <i class="layui-icon" title="人气">&#xe756;</i> ${at.views}
+            <i class="layui-icon" title="评论">&#xe63a;</i> ${at.commentTotal}
           </span>
             </p>
           </li>
