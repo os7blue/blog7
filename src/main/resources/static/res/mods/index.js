@@ -315,11 +315,11 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
 
   // 获取城市设置天气信息
   function getCitySetWeather(){
-    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(_result) {
-      if (remote_ip_info.ret == '1') {
+    $.getJSON('http://ip.taobao.com/service/getIpInfo2.php?ip=myip', function(_result) {
+      if (_result.city != null) {
         // 设置天气
-        setWeather(remote_ip_info.city);
-        //layer.alert('国家：' + remote_ip_info.country + '<BR>省：' + remote_ip_info.province + '<BR>市：' + remote_ip_info.city + '<BR>区：' + remote_ip_info.district);
+        setWeather(_result.city);
+        // layer.alert('国家：' + remote_ip_info.country + '<BR>省：' + remote_ip_info.province + '<BR>市：' + remote_ip_info.city + '<BR>区：' + remote_ip_info.district);
       }else{
         layer.alert('没有找到城市地址信息');
       }

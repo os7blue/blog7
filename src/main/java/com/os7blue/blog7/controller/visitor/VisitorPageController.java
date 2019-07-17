@@ -4,6 +4,7 @@ package com.os7blue.blog7.controller.visitor;
 import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.entity.User;
 import com.os7blue.blog7.model.ReturnModel;
+import com.os7blue.blog7.model.ViewArticle;
 import com.os7blue.blog7.service.ArticleService;
 import com.os7blue.blog7.service.admin.AdminLoginService;
 import com.os7blue.blog7.util.UserStatus;
@@ -68,8 +69,8 @@ public class VisitorPageController {
     @GetMapping(value = "/article/{id}")
     public String gotoDetail(@PathVariable Integer id, Map model){
         articleService.addOneViews(id);
-        Article at = articleService.getArticleDetailById(id);
-        model.put("at",at);
+        ViewArticle vat = articleService.getArticleDetailById(id);
+        model.put("at",vat);
         return "detail";
     }
     /**

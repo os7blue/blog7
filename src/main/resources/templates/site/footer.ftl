@@ -28,6 +28,8 @@
     </div>
 </div>
 
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
 <script src="/res/layui/layui.js"></script>
 <script>
     layui.config({

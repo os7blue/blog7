@@ -1,62 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>详情页</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <link rel="stylesheet" href="/res/layui/css/layui.css">
-  <link rel="stylesheet" href="/res/css/global.css">
-</head>
-<body>
-
-<div class="header">
-  <div class="main">
-    <a class="logo" href="javascript:void(0);" title=""></a>
-
-    <div class="nav">
-      <a href="javascript:void(0);">前端</a>
-      <a href="javascript:void(0);">后台</a>
-    </div>
-
-    <div class="nav-user ">
-      <form class="layui-form fly-article-search" action="" >
-        <div class="layui-input-inline">
-          <div class="layui-input-inline">
-            <input type="text" name="data" required lay-verify="required" placeholder="搜索···" autocomplete="off" class="layui-input" />
-          </div>
-          <!--<div class="layui-input-inline">
-            <button class="layui-btn layui-btn-normal layui-icon" lay-submit>&#xe615;</button>
-          </div>-->
-        </div>
-      </form>
-      <!-- 未登入状态 -->
-      <!--<span><a href="user/login.html">登入</a><a href="user/reg.html">注册</a></span>-->
-
-      <!-- 登入后的状态 -->
-      <!--<a class="avatar" href="user.html">
-        <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">
-        <cite>贤心</cite>
-        <i>VIP2</i>
-      </a>-->
-    </div>
-  </div>
-</div>
+<#include "site/header.ftl">
 
 <div class="main layui-anim layui-anim-upbit layui-clear">
   <div class="layui-row layui-col-space15">
     <!-- left panel -->
     <div class="layui-col-md8 detail">
         <div class="fly-panel detail-box">
-          <h1>博客详细页模版</h1>
+          <h1>${at.title}</h1>
           <div class="fly-tip fly-detail-hint" data-id="{{rows.id}}">
             <span class="layui-badge-rim layui-bg-black">精贴</span>
             <span class="layui-badge-rim layui-bg-red">置顶</span>
 
             <div class="fly-list-hint">
-              <i class="layui-icon" title="人气">&#xe756;</i> 85421
-              <i class="layui-icon" title="回答">&#xe63a;</i> 650
+              <i class="layui-icon" title="人气">&#xe756;</i> ${at.views}
+              <i class="layui-icon" title="评论">&#xe63a;</i> ${at.commentTotal}
             </div>
           </div>
           <!--<div class="detail-about">
@@ -78,7 +34,7 @@
           <div class="detail-body photos" style="margin-bottom: 20px;">
 
             <p>
-              该模版由layui官方社区（<a href="http://fly.layui.com/" target="_blank">fly.layui.com</a>）倾情提供，深入修改制作的博客模板.
+              文章发布于${at.createTime?c?number?number_to_datetime},最近一次编辑于${at.createTime?c?number?number_to_datetime}，转载请注明出处
             </p>
             <p>
               <img src="${at.titleImg}" alt="Fly社区">
@@ -437,53 +393,4 @@
   </div>
 </div>
 
-<div class="footer">
-  <p>
-    <a href="http://fly.layui.com/" target="_blank">layui</a>
-    <a href="http://layim.layui.com/" target="_blank">layim</a>
-    <a href="http://layer.layui.com/" target="_blank">layer</a>
-  </p>
-  <p><a href="http://blog.vip-admin.com/" target="_blank">博客</a> 2017 &copy; <a href="https://www.vip-admin.com/" target="_blank">vip-admin.com</a></p>
-</div>
-
-<div class="city-box layui-hide">
-  <div class="city-content-box padding-10">
-    <form class="layui-form city-search-box" action="" >
-      <div class="layui-input-inline">
-        <div class="layui-input-inline">
-          <input type="text" name="city" required lay-verify="required" placeholder="输入城市" autocomplete="off" class="layui-input" />
-        </div>
-        <div class="layui-input-inline">
-          <button class="layui-btn layui-btn-normal" lay-submit lay-filter="city-submit">确定</button>
-        </div>
-      </div>
-    </form>
-    <span class="layui-badge-rim">北京</span>
-    <span class="layui-badge-rim">上海</span>
-    <span class="layui-badge-rim">杭州</span>
-    <span class="layui-badge-rim">深圳</span>
-    <span class="layui-badge-rim">广州</span>
-    <span class="layui-badge-rim">成都</span>
-  </div>
-</div>
-
-<script src="/res/layui/layui.js"></script>
-<script>
-layui.config({
-  version: "2.0.0"
-  ,base: '/res/mods/'
-}).extend({
-  fly: 'index'
-}).use('fly', function(){
-  var fly = layui.fly;
-  //如果你是采用模版自带的编辑器，你需要开启以下语句来解析。
-  /*
-  $('.detail-body').each(function(){
-    var othis = $(this), html = othis.html();
-    othis.html(fly.content(html));
-  });
-  */
-});
-</script>
-</body>
-</html>
+<#include "site/footer.ftl">

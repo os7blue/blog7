@@ -1,6 +1,5 @@
 package com.os7blue.blog7.service;
 
-import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.mapper.ArticleMapper;
 import com.os7blue.blog7.model.ViewArticle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,9 @@ public class ArticleService {
     private ArticleMapper articleMapper;
 
 
-    public Article getArticleDetailById(Integer id) {
+    public ViewArticle getArticleDetailById(Integer id) {
 
-        return articleMapper.selectOneArticleByid(id);
+        return articleMapper.selectOneArticleById(id);
     }
 
 

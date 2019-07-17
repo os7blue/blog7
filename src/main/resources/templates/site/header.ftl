@@ -13,10 +13,9 @@
 
 <div class="header">
     <div class="main">
-        <a class="logo" href="javascript:void(0);" title="">os7blue个人博客</a>
+        <a class="logo" href="/" title="">os7blue个人博客</a>
         <div class="nav">
-            <a href="javascript:void(0);">前端</a>
-            <a href="javascript:void(0);">后台</a>
+            <a href="/admin">后台管理</a>
         </div>
 
         <div class="nav-user ">

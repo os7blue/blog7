@@ -50,17 +50,15 @@
               <a href="/" class="layui-badge-rim layui-bg-black">精贴</a>
               <a href="/" class="layui-badge-rim layui-bg-red">置顶</a>
             </div>
-            <#if at.content?split("pre")?size!=0>
-              <div class="fly-content-text">${at.content?split("pre")[0]}</div>
+            <#assign preview = at.content?replace("<pre>","")?replace("</pre>","")?replace("<code>","")?replace("</code>","")?replace("<br>","")?replace("</br>","")?replace("&nbsp","")>
 
-            <#else >
-              <div class="fly-content-text">${at.content?substring(0,7)}</div>
 
-            </#if>
+              <a href="/article/${at.id}" target="_blank" class="fly-content-text">${preview}</a>
+
 
             <p class="layui-elip">
               <span><i class="layui-icon">&#xe612;</i> <a href="/about" target="_blank">某某某</a></span>
-              <span><i class="layui-icon">&#xe62d;</i> 刚刚</span>
+              <span><i class="layui-icon">&#xe62d;</i> ${at.createTime?c?number?number_to_datetime}</span>
               <span><i class="layui-icon">&#xe857;</i> 其他</span>
               <span class="fly-list-hint">
             <i class="layui-icon" title="人气">&#xe756;</i> ${at.views}
