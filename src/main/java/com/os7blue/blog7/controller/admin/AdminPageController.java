@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminPageController {
 
 
+
+
+    @GetMapping(value = "/sort")
+    public String gotoAdminSort(){
+        return "admin/adminSort";
+    }
     /**
      * 新建文章页面
      * @return

@@ -1,10 +1,10 @@
 <div class="footer">
-    <p>
-        <a href="http://fly.layui.com/" target="_blank">layui</a>
-        <a href="http://layim.layui.com/" target="_blank">layim</a>
-        <a href="http://layer.layui.com/" target="_blank">layer</a>
-    </p>
-    <p><a href="http://blog.vip-admin.com/" target="_blank">博客</a> 2017 &copy; <a href="https://www.vip-admin.com/" target="_blank">vip-admin.com</a></p>
+<#--    <p>-->
+<#--        <a href="http://fly.layui.com/" target="_blank">layui</a>-->
+<#--        <a href="http://layim.layui.com/" target="_blank">layim</a>-->
+<#--        <a href="http://layer.layui.com/" target="_blank">layer</a>-->
+<#--    </p>-->
+    <p><a href="http://blog.os7blue.com/" target="_blank">blog7</a> 2019 &copy; <a href="https://blog7.os7blue.com/" target="_blank">blog7</a></p>
 </div>
 
 <div class="city-box layui-hide">

@@ -50,7 +50,7 @@
               <a href="/" class="layui-badge-rim layui-bg-black">精贴</a>
               <a href="/" class="layui-badge-rim layui-bg-red">置顶</a>
             </div>
-            <#assign preview = at.content?replace("<pre>","")?replace("</pre>","")?replace("<code>","")?replace("</code>","")?replace("<br>","")?replace("</br>","")?replace("&nbsp","")>
+            <#assign preview = at.content?replace("<pre>","")?replace("</pre>","")?replace("<code>","")?replace("</code>","")?replace("<br>","")?replace("</br>","")?replace("&nbsp","")?html>
 
 
               <a href="/article/${at.id}" target="_blank" class="fly-content-text">${preview}</a>
@@ -196,7 +196,7 @@
 <#--      </div>-->
       <!-- 最近综合 -->
       <dl class="fly-panel fly-list-one">
-        <dt class="fly-panel-title">最近综合</dt>
+        <dt class="fly-panel-title">最多访问</dt>
         <dd>
           <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
           <span><i class="layui-icon">&#xe637;</i>10-20</span>
@@ -240,7 +240,7 @@
       </dl>
       <!-- 最近人气 -->
       <dl class="fly-panel fly-list-one">
-        <dt class="fly-panel-title">最近人气</dt>
+        <dt class="fly-panel-title">最多评论</dt>
         <dd>
           <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
           <span><i class="layui-icon">&#xe756;</i> 6087</span>
@@ -284,7 +284,7 @@
       </dl>
       <!-- 最近热议 -->
       <dl class="fly-panel fly-list-one">
-        <dt class="fly-panel-title">近期热议</dt>
+        <dt class="fly-panel-title">猜你喜欢</dt>
         <dd>
           <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
           <span><i class="layui-icon">&#xe63a;</i> 6087</span>
