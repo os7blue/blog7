@@ -48,4 +48,13 @@ public interface ArticleMapper {
      */
     @Update(value = "UPDATE b7_article SET views = views+1 WHERE id = #{id}")
     void updateOneArticleViews(Integer id);
+
+    @Select(value = "SELECT a.*,(SELECT COUNT(*) FROM b7_comment WHERE parentId = a.id ) AS commentTotal FROM b7_article a ORDER BY a.views DESC LIMIT 0,10")
+    List<ViewArticle> selectViewMostArticleList();
+
+    @Select(value = "SELECT a.*,(SELECT COUNT(*) FROM b7_comment WHERE parentId = a.id ) AS commentTotal FROM b7_article a ORDER BY commentTotal DESC LIMIT 0,10")
+    List<ViewArticle> selectCommentMostArticleList();
+
+    @Select(value = "SELECT a.*,(SELECT COUNT(*) FROM b7_comment WHERE parentId = a.id ) AS commentTotal FROM b7_article a ORDER BY RANDOM() LIMIT 0,10")
+    List<ViewArticle> selectRandomArticle();
 }

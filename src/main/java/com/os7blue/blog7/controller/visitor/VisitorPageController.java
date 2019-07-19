@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 
@@ -56,10 +57,17 @@ public class VisitorPageController {
     @GetMapping(value = {"/","/index"})
     public String gotoIndex(Map model){
 
-        var list = articleService.getViewArticleListAccordingToConditions(0,null,null);
+        var atList = articleService.getViewArticleListAccordingToConditions(0,null,null);
+        model.put("atList",atList);
 
-        model.put("atl",list);
+        List<ViewArticle> vatList = articleService.getViewMostArticle();
+        model.put("vatList",vatList);
 
+        List<ViewArticle> catList = articleService.getCommentMostArticleList();
+        model.put("catList",catList);
+
+        List<ViewArticle> ratList = articleService.getRandomArticle();
+        model.put("ratList",ratList);
 
         return "index";
     }
@@ -68,9 +76,14 @@ public class VisitorPageController {
 
     @GetMapping(value = "/article/{id}")
     public String gotoDetail(@PathVariable Integer id, Map model){
+
         articleService.addOneViews(id);
+
         ViewArticle vat = articleService.getArticleDetailById(id);
         model.put("at",vat);
+
+
+
         return "detail";
     }
     /**

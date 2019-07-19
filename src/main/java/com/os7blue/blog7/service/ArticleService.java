@@ -7,13 +7,58 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+  * @Description:    前台页面文章处理
+  * @Author:         os7blue
+  * @CreateDate:     19-7-19 下午10:46
+  * @UpdateUser:     os7blue
+  * @UpdateDate:     19-7-19 下午10:46
+  * @UpdateRemark:
+  * @Version:        1.0
+*/
 @Service
 public class ArticleService {
 
     @Autowired
     private ArticleMapper articleMapper;
 
+    /**
+     * 随机获取文章
+     * @return
+     */
+    public List<ViewArticle> getRandomArticle(){
 
+        return articleMapper.selectRandomArticle();
+
+    }
+
+
+    /**
+     * 获取最近评论最多的文章简介列表
+     * @return
+     */
+    public List<ViewArticle> getCommentMostArticleList(){
+        return articleMapper.selectCommentMostArticleList();
+    }
+
+
+    /**
+     * 获取最近浏览最多的文章简介列表
+     * @return
+     */
+    @Autowired
+    public List<ViewArticle> getViewMostArticle(){
+
+        return articleMapper.selectViewMostArticleList();
+
+
+    }
+
+    /**
+     * 根据文章id获取详情
+     * @param id
+     * @return
+     */
     public ViewArticle getArticleDetailById(Integer id) {
 
         return articleMapper.selectOneArticleById(id);

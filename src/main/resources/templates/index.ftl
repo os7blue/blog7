@@ -8,14 +8,11 @@
       <!-- carousel -->
       <div class="layui-carousel fly-carousel" id="carousel">
         <div carousel-item>
-          <div>条目1</div>
-          <div>条目2</div>
-          <div>条目3</div>
-          <div>条目4</div>
-          <div>条目5</div>
-          <div>条目5</div>
-          <div>条目5</div>
-          <div>条目5</div>
+          <div><a href="/article/id" target="_blank"><img src=""></a></div>
+          <#list ratList as rat>
+            <a style="background-image: url('${rat.titleImg}');" href="/article/${rat.id}" target="_blank">${rat.title}</a>
+
+          </#list>
         </div>
       </div>
       <!--<div class="fly-tab fly-tab-index">
@@ -38,7 +35,7 @@
 
 
 
-        <#list atl as at>
+        <#list atList as at>
           <li class="fly-list-li">
             <a href="/article/${at.id}" target="_blank" class="fly-list-avatar">
               <img src="${at.titleImg}" alt="">
@@ -50,8 +47,8 @@
               <a href="/" class="layui-badge-rim layui-bg-black">精贴</a>
               <a href="/" class="layui-badge-rim layui-bg-red">置顶</a>
             </div>
-            <#assign preview = at.content?replace("<pre>","")?replace("</pre>","")?replace("<code>","")?replace("</code>","")?replace("<br>","")?replace("</br>","")?replace("&nbsp","")?html>
-
+<#--            <#assign preview = at.content?replace("<pre>","")?replace("</pre>","")?replace("<code>","")?replace("</code>","")?replace("<br>","")?replace("</br>","")?replace("&nbsp","")?html>-->
+                <#assign preview = at.content?html>
 
               <a href="/article/${at.id}" target="_blank" class="fly-content-text">${preview}</a>
 
@@ -88,8 +85,8 @@
         <p class="fly-wd">···</p>
         <p class="fly-fx">···</p>
       </div>
-      <!-- top 12 -->
-      <!--<div class="fly-panel leifeng-rank">
+      <!-- top 12 &ndash;&gt;
+      <div class="fly-panel leifeng-rank">
         <h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
         <dl>
           <dd>
@@ -177,7 +174,7 @@
             </a>
           </dd>
         </dl>
-      </div>-->
+      </div>
 <#--      <!-- tag &ndash;&gt;-->
 <#--      <div class="fly-panel fly-list-one fly-tag">-->
 <#--        <h3 class="fly-panel-title">标签云</h3>-->
@@ -197,134 +194,51 @@
       <!-- 最近综合 -->
       <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">最多访问</dt>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe637;</i>10-20</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe637;</i>10-19</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe637;</i>10-19</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe637;</i>10-19</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe637;</i>10-17</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe637;</i>10-17</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe637;</i>10-17</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe637;</i>10-15</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe637;</i>10-10</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe63c;</i>10-05</span>
-        </dd>
+
+        <#list vatList as vat>
+
+          <dd>
+            <a href="/article/${vat.id}" target="_blank">${vat.title}</a>
+            <span><i class="layui-icon">&#xe756;</i>${vat.views}</span>
+            <span><i class="layui-icon">&#xe63a;</i>${vat.commentTotal}</span>
+
+          </dd>
+
+        </#list>
+
+
       </dl>
       <!-- 最近人气 -->
       <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">最多评论</dt>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe756;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe756;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe756;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe756;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe756;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe756;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe756;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe756;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe756;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe756;</i> 767</span>
-        </dd>
+
+        <#list catList as cat>
+
+          <dd>
+            <a href="/article/${cat.id}" target="_blank">${cat.title}</a>
+            <span><i class="layui-icon">&#xe756;</i>${cat.views}</span>
+            <span><i class="layui-icon">&#xe63a;</i>${cat.commentTotal}</span>
+
+          </dd>
+
+        </#list>
+
       </dl>
       <!-- 最近热议 -->
       <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">猜你喜欢</dt>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe63a;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe63a;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe63a;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe63a;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之我的最爱</a>
-          <span><i class="layui-icon">&#xe63a;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之常用工具</a>
-          <span><i class="layui-icon">&#xe63a;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe63a;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe63a;</i> 767</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之网站阅读</a>
-          <span><i class="layui-icon">&#xe63a;</i> 6087</span>
-        </dd>
-        <dd>
-          <a href="detail.html">浏览器收藏栏之前端工具插件</a>
-          <span><i class="layui-icon">&#xe63a;</i> 767</span>
-        </dd>
+
+        <#list ratList as rat>
+
+          <dd>
+            <a href="/article/${rat.id}" target="_blank">${rat.title}</a>
+            <span><i class="layui-icon">&#xe756;</i>${rat.views}</span>
+            <span><i class="layui-icon">&#xe63a;</i>${rat.commentTotal}</span>
+
+          </dd>
+
+        </#list>
+
       </dl>
       <!-- 友链 -->
       <div class="fly-panel fly-link">
