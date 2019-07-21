@@ -297,7 +297,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
 
   // 设置天气数据
   function setWeather(city){
-    var _city = city + '市';
+    var _city = city ;
     $.get('http://wthrcdn.etouch.cn/weather_mini?city='+_city, function(res){
       var data = JSON.parse(res);
       if(data.status == 1000){
@@ -315,14 +315,12 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
 
   // 获取城市设置天气信息
   function getCitySetWeather(){
-    $.getJSON('http://ip.taobao.com/service/getIpInfo2.php?ip=myip', function(_result) {
-      if (_result.city != null) {
+    $.getScript('http://pv.sohu.com/cityjson?ie=utf-8', function(_result) {
+
         // 设置天气
-        setWeather(_result.city);
+        setWeather(returnCitySN.cname);
         // layer.alert('国家：' + remote_ip_info.country + '<BR>省：' + remote_ip_info.province + '<BR>市：' + remote_ip_info.city + '<BR>区：' + remote_ip_info.district);
-      }else{
-        layer.alert('没有找到城市地址信息');
-      }
+
     });
   }
   getCitySetWeather();

@@ -82,6 +82,15 @@ public class VisitorPageController {
         ViewArticle vat = articleService.getArticleDetailById(id);
         model.put("at",vat);
 
+        List<ViewArticle> vatList = articleService.getViewMostArticle();
+        model.put("vatList",vatList);
+
+        List<ViewArticle> catList = articleService.getCommentMostArticleList();
+        model.put("catList",catList);
+
+        List<ViewArticle> ratList = articleService.getRandomArticle();
+        model.put("ratList",ratList);
+
 
 
         return "detail";
