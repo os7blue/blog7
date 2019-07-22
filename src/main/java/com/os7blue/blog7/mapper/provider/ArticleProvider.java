@@ -33,6 +33,8 @@ public class ArticleProvider {
                     WHERE("a.content LIKE %#{searchValue}%");
                 }
 
+                ORDER_BY("a.createTime DESC");
+
 
             }
         }.toString(); //+" LIMIT " + begin * 12 +",12"

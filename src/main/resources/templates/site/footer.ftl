@@ -37,8 +37,8 @@
         ,base: '/res/mods/'
     }).extend({
         fly: 'index',
-        loginCheck: 'login'
-    }).use(['fly','loginCheck']);
+        view: 'view'
+    }).use(['fly','view']);
 </script>
 </body>
 </html>

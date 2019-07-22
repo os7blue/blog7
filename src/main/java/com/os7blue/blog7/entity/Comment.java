@@ -19,6 +19,8 @@ public class Comment {
 
     private String email;
 
+    private String url;
+
     private String nickName;
 
     private String content;

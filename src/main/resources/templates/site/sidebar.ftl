@@ -1,13 +1,10 @@
 <!-- right panel -->
 <div class="layui-col-md4">
 
-    <!-- weather -->
-    <div class="fly-panel fly-list-one fly-weather">
-        <span class="layui-badge-rim layui-bg-blue fly-day">今日天气</span>
-        <span class="layui-badge-rim fly-city">···</span>
-        <h2>···</h2>
-        <p class="fly-wd">···</p>
-        <p class="fly-fx">···</p>
+    <!-- SPEED -->
+    <div class="fly-panel fly-list-one">
+        <dt class="fly-panel-title">测个网速吧</dt>
+        <iframe align="center" src="https://plugin.speedtest.cn/#FFF"  frameborder="no" scrolling="no" width="100%" height="610px"></iframe>
     </div>
 
     <#--      <!-- tag &ndash;&gt;-->

@@ -16,7 +16,7 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
   ,element = layui.element
   ,city_idx = 0
   ,device = layui.device();
-  
+
   //阻止IE7以下访问
   if(device.ie && device.ie < 8){
     layer.alert('如果您非得使用ie浏览Fly社区，那么请使用ie8+');
@@ -295,88 +295,12 @@ layui.define(['layer', 'laytpl', 'form', 'upload', 'util', 'carousel', 'laydate'
     ,anim: 'fade'     //切换动画方式
   });
 
-  // 设置天气数据
-  function setWeather(city){
-    var _city = city ;
-    $.get('http://wthrcdn.etouch.cn/weather_mini?city='+_city, function(res){
-      var data = JSON.parse(res);
-      if(data.status == 1000){
-        //$('.weather').html(data.data.forecast[0].type);
-        var weather = $('.fly-weather');
-        weather.find('span.fly-city').html(_city);
-        weather.find('h2').html(data.data.forecast[0].type);
-        weather.find('p.fly-wd').html(data.data.wendu+'°C');
-        weather.find('p.fly-fx').html(data.data.forecast[0].fengxiang);
-      }else{
-        layer.msg('天气错误:'+data.desc);
-      }
-    });
-  }
 
-  // 获取城市设置天气信息
-  function getCitySetWeather(){
-    $.getScript('http://pv.sohu.com/cityjson?ie=utf-8', function(_result) {
 
-        // 设置天气
-        setWeather(returnCitySN.cname);
-        // layer.alert('国家：' + remote_ip_info.country + '<BR>省：' + remote_ip_info.province + '<BR>市：' + remote_ip_info.city + '<BR>区：' + remote_ip_info.district);
 
-    });
-  }
-  getCitySetWeather();
 
-  // 城市天气选择
-  $(document).on('click','.fly-city',function(){
-    //页面层
-    city_idx = layer.open({
-      type: 1                   // 弹出框类型
-      ,title: false             // 标题
-      ,closeBtn: false
-      ,shadeClose: true
-      ,area: ['290px', 'auto']  // 宽高
-      ,content: $('.city-box').html()  // 内容
-    });
-  });
 
-  // 输入城市查询天气
-  form.on('submit(city-submit)', function(data){
-    if(data.field.city){
-      // 设置天气
-      setWeather( data.field.city );
-      // 关闭弹框
-      layer.close(city_idx);
-    }else{
-      layer.msg('输入城市不能为空');
-    }
-    //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-    return false;
-  });
 
-  // 直接选择城市查询天气
-  $(document).on('click','.city-content-box span',function(){
-    if($(this).html()){
-      setWeather( $(this).html() );
-      // 关闭弹框
-      layer.close(city_idx);
-    }else{
-      layer.msg('选择城市出错');
-    }
-  });
-
-  // 随机设置天气背景（最大范围数）
-  function setWeatherBg(maxNum){
-    var idx = Math.floor(Math.random()*maxNum+1);
-    // 设置背景色
-    $('.fly-weather').css("background-image","url(../res/images/weather/0"+idx+".jpg)");
-  }
-  setWeatherBg(5);
-
-  //相册
-  layer.photos({
-    photos: '.photos'
-    ,zIndex: 9999999999
-    ,anim: -1
-  });
 
   //搜索
   $('.fly-search').submit(function(){
