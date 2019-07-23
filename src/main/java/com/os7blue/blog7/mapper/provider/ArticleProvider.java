@@ -29,8 +29,9 @@ public class ArticleProvider {
                 }
 
                 if (searchValue!=null){
-                    WHERE("a.title LIKE %#{searchValue}%");
-                    WHERE("a.content LIKE %#{searchValue}%");
+                    WHERE("a.title LIKE '%${searchValue}%'");
+                    OR();
+                    WHERE("a.content LIKE '%${searchValue}%'");
                 }
 
                 ORDER_BY("a.createTime DESC");

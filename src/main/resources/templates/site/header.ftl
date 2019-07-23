@@ -19,10 +19,10 @@
         </div>
 
         <div class="nav-user ">
-            <form class="layui-form fly-article-search" action="" >
+            <form class="layui-form fly-article-search" action="/search" method="get" >
                 <div class="layui-input-inline">
                     <div class="layui-input-inline">
-                        <input type="text" name="data" required lay-verify="required" placeholder="搜索···" autocomplete="off" class="layui-input" />
+                        <input type="text" name="searchValue" required lay-verify="required" placeholder="输入搜索内容" autocomplete="off" class="layui-input" />
                     </div>
                     <!--<div class="layui-input-inline">
                       <button class="layui-btn layui-btn-normal layui-icon" lay-submit>&#xe615;</button>
@@ -41,3 +41,4 @@
         </div>
     </div>
 </div>
+

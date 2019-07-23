@@ -4,6 +4,7 @@
 <#--        <a href="http://layim.layui.com/" target="_blank">layim</a>-->
 <#--        <a href="http://layer.layui.com/" target="_blank">layer</a>-->
 <#--    </p>-->
+
     <p><a href="http://blog.os7blue.com/" target="_blank">blog7</a> 2019 &copy; <a href="https://blog7.os7blue.com/" target="_blank">blog7</a></p>
 </div>
 

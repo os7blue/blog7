@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 
@@ -75,6 +76,15 @@ public class VisitorPageController {
         loadGuideInfoService.loadIndexGuideInfo(model);
 
         return "index";
+    }
+
+    @GetMapping("/search")
+    public String gotoSearch(String searchValue,Map model){
+
+        List<ViewArticle> list = articleService.getViewArticleListAccordingToConditions(null, null, searchValue);
+        model.put("searchList",list);
+        model.put("searchValue",searchValue);
+        return "search";
     }
 
 

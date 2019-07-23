@@ -1,11 +1,7 @@
 <!-- right panel -->
 <div class="layui-col-md4">
 
-    <!-- SPEED -->
-    <div class="fly-panel fly-list-one">
-        <dt class="fly-panel-title">测个网速吧</dt>
-        <iframe align="center" src="https://plugin.speedtest.cn/#FFF"  frameborder="no" scrolling="no" width="100%" height="610px"></iframe>
-    </div>
+
 
     <#--      <!-- tag &ndash;&gt;-->
     <#--      <div class="fly-panel fly-list-one fly-tag">-->
@@ -23,6 +19,43 @@
     <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>-->
     <#--        </div>-->
     <#--      </div>-->
+
+
+    <dl class="fly-panel fly-list-one">
+        <dt class="fly-panel-title">一言</dt>
+
+        <p id="hitokoto" style="text-align: center; width: 87%;margin: 0 auto;">:D 获取中...</p>
+        <!-- 以下写法，选取一种即可 -->
+
+        <!-- 现代写法，推荐 -->
+        <!-- 兼容低版本浏览器 (包括 IE)，可移除 -->
+        <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+        <!--End-->
+        <script>
+            fetch('https://v1.hitokoto.cn')
+                .then(function (res){
+                    return res.json();
+                })
+                .then(function (data) {
+                    var hitokoto = document.getElementById('hitokoto');
+                    hitokoto.innerText = data.hitokoto;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                })
+        </script>
+
+
+
+    </dl>
+
+    <!-- SPEED -->
+    <dl class="fly-panel fly-list-one">
+        <dt class="fly-panel-title">测个网速吧</dt>
+        <iframe align="center" src="https://plugin.speedtest.cn/#FFF"  frameborder="no" scrolling="no" width="100%" height="610px"></iframe>
+    </dl>
+
     <!-- 最近综合 -->
     <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">最多访问</dt>
@@ -72,6 +105,10 @@
         </#list>
 
     </dl>
+
+
+
+
     <!-- 友链 -->
     <div class="fly-panel fly-link">
         <h3 class="fly-panel-title">友情链接</h3>
@@ -87,4 +124,5 @@
             </dd>
         </dl>
     </div>
+
 </div>
