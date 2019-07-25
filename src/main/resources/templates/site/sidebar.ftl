@@ -25,6 +25,9 @@
         <dt class="fly-panel-title">一言</dt>
 
         <p id="hitokoto" style="text-align: center; width: 87%;margin: 0 auto;">:D 获取中...</p>
+
+        <iframe style="position:relative;display:table-cell;text-align:center;vertical-align:middle;margin: 0 auto;" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=32977382&auto=1&height=66"></iframe>
+
         <!-- 以下写法，选取一种即可 -->
 
         <!-- 现代写法，推荐 -->
@@ -50,12 +53,7 @@
 
     </dl>
 
-    <!-- SPEED -->
-    <dl class="fly-panel fly-list-one">
-        <dt class="fly-panel-title">测个网速吧</dt>
-        <iframe align="center" src="https://plugin.speedtest.cn/#FFF"  frameborder="no" scrolling="no" width="100%" height="610px"></iframe>
-    </dl>
-
+    
     <!-- 最近综合 -->
     <dl class="fly-panel fly-list-one">
         <dt class="fly-panel-title">最多访问</dt>

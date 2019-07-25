@@ -16,6 +16,7 @@
         <a class="logo" href="/" title="">os7blue个人博客</a>
         <div class="nav">
             <a href="/admin">后台管理</a>
+            <a href="http://os7blue.com" target="_blank">当前站点正在开发迭代中</a>
         </div>
 
         <div class="nav-user ">
