@@ -2,7 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页</title>
+    <#if at??>
+        <title>os7blue-${at.title}-文章详情</title>
+    <#else >
+        <title>首页</title>
+    </#if>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="">
     <meta name="description" content="">
