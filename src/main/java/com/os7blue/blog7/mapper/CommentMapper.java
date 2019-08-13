@@ -23,14 +23,14 @@ public interface CommentMapper {
             "parentId," +
             "url) " +
             "VALUES(" +
-            "'${nickName}'," +
-            "'${content}'," +
-            "'${header}'," +
-            "'${createTime}'," +
-            "'${status}'," +
-            "'${email}'," +
-            "'${parentId}'," +
-            "'${url}') ")
+            "#{nickName}," +
+            "#{content}," +
+            "#{header}," +
+            "#{createTime}," +
+            "#{status}," +
+            "#{email}," +
+            "#{parentId}," +
+            "#{url}) ")
     Integer insertOneArticleComment(Comment comment);
 
     @Select(value = "SELECT * FROM b7_comment WHERE parentId = #{id}")

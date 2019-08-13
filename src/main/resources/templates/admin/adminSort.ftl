@@ -17,9 +17,20 @@
 <!-- 工具集 -->
 <div class="my-btn-box">
     <span class="fl">
-        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>
-        <a class="layui-btn btn-add btn-default" id="btn-add">添加</a>
-        <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
+<#--        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>-->
+<#--        <a class="layui-btn btn-add btn-default" id="btn-add">添加</a>-->
+<#--        <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>-->
+
+    <div class="layui-inline">
+      <label class="layui-form-label">范围</label>
+      <div class="layui-input-inline" style="width: 100px;">
+        <input type="text" id="wsv" placeholder="￥" autocomplete="off" class="layui-input">
+      </div>
+      <div class="layui-form-mid">-</div>
+      <div class="layui-input-inline" style="width: 100px;">
+          <a id="wsb" class="layui-btn layui-btn-mini layui-btn-danger">发送</a>
+      </div>
+    </div>
     </span>
 
 </div>
@@ -40,6 +51,12 @@
             , layer = layui.layer
             , vipTable = layui.vip_table
             , $ = layui.jquery;
+
+        $("#wsb").on('click',function () {
+            $.post("/admin/ws/push",{msg:$("#wsv").val()},function (res) {
+
+            });
+        });
 
         // 表格渲染
         var tableIns = table.render({

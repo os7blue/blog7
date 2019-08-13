@@ -24,6 +24,6 @@ public interface AdminLoginMapper {
      * @param user
      * @return
      */
-    @Select(value = "SELECT nickName,passWord FROM b7_user WHERE nickName = '${nickName}' AND passWord = '${passWord}'")
+    @Select(value = "SELECT nickName,passWord FROM b7_user WHERE nickName = #{nickName} AND passWord = #{passWord}")
     User selectUserInfoByLoginInfo(User user);
 }

@@ -1,6 +1,7 @@
 package com.os7blue.blog7.controller.visitor;
 
 
+import com.alibaba.druid.util.Base64;
 import com.os7blue.blog7.entity.User;
 import com.os7blue.blog7.model.ReturnModel;
 import com.os7blue.blog7.model.ViewArticle;
@@ -8,6 +9,7 @@ import com.os7blue.blog7.service.ArticleService;
 import com.os7blue.blog7.service.CommentService;
 import com.os7blue.blog7.service.admin.AdminLoginService;
 import com.os7blue.blog7.service.manager.LoadGuideInfoService;
+import com.os7blue.blog7.socket.WebSocketServer;
 import com.os7blue.blog7.util.UserStatus;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +71,7 @@ public class VisitorPageController {
      * @return
      */
     @GetMapping(value = {"/", "/index"})
-    public String gotoIndex(Map model) {
+    public String gotoIndex(Map model) throws IOException {
 
         var atList = articleService.getViewArticleListAccordingToConditions(0, null, null);
         model.put("atList", atList);
@@ -128,6 +131,7 @@ public class VisitorPageController {
 
         var rm = new ReturnModel();
 
+        user.setPassWord(Base64.byteArrayToBase64(user.getPassWord().getBytes()));
         User result = adminLoginService.getUserInfoByLoginInfo(user);
 
         //有对应的匹配结果

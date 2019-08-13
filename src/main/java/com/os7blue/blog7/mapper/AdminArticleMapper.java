@@ -19,12 +19,12 @@ public interface AdminArticleMapper {
             "status"+
             ")" +
             "VALUES(" +
-            "'${title}'," +
-            "'${titleImg}'," +
-            "'${content}'," +
-            "${createTime}," +
-            "${updateTime}," +
-            "${status});")
+            "#{title}," +
+            "#{titleImg}," +
+            "#{content}," +
+            "#{createTime}," +
+            "#{updateTime}," +
+            "#{status});")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     Integer insertNewArticle(Article article);
 }

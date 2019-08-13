@@ -1,8 +1,12 @@
 package com.os7blue.blog7.controller.admin;
 
+import com.os7blue.blog7.socket.WebSocketServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.IOException;
 
 /**
   * @Description:    后台管理页面以及相关模板加载
@@ -19,6 +23,11 @@ public class AdminPageController {
 
 
 
+    @PostMapping("/ws/push")
+    public void wsPush(String msg) throws IOException {
+        WebSocketServer.sendInfo(msg,null);
+
+    }
 
     @GetMapping(value = "/sort")
     public String gotoAdminSort(){

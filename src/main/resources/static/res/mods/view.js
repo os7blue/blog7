@@ -4,10 +4,9 @@ layui.define(['layer','form'],function (exports) {
         ,$=layui.jquery;
 
 
-
-
-
     var view = [
+
+
 
         form.on("submit(loginCheck)",function (data) {
             $.post("/loginCheck",data.field,function (res) {
