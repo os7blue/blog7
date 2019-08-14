@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 
 
 /**
@@ -18,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @ServletComponentScan
 @EnableAsync
+@EnableWebSocket
 public class Blog7Application {
 
     public static void main(String[] args) {

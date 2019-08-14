@@ -31,10 +31,7 @@ public class WebSocketServer {
         webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
         this.sid=sid;
-        try {
-            sendMessage("正在连接websocket");
-        } catch (IOException e) {
-        }
+
     }
 
     /**

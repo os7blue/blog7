@@ -9,11 +9,11 @@ import com.os7blue.blog7.service.ArticleService;
 import com.os7blue.blog7.service.CommentService;
 import com.os7blue.blog7.service.admin.AdminLoginService;
 import com.os7blue.blog7.service.manager.LoadGuideInfoService;
-import com.os7blue.blog7.socket.WebSocketServer;
 import com.os7blue.blog7.util.UserStatus;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -117,6 +117,11 @@ public class VisitorPageController {
     @GetMapping(value = "/admin")
     public String gotoAdmin() {
         return "admin/index";
+    }
+    @GetMapping(value = "/about")
+    public String gotoAbout(Map model) {
+        model.put("timeLineMap",articleService.getArticleTimeLine());
+        return "about";
     }
 
 
