@@ -17,27 +17,39 @@
 <!-- 工具集 -->
 <div class="my-btn-box">
     <span class="fl">
-<#--        <a class="layui-btn layui-btn-danger radius btn-delect" id="btn-delete-all">批量删除</a>-->
-<#--        <a class="layui-btn btn-add btn-default" id="btn-add">添加</a>-->
-<#--        <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>-->
-
-    <div class="layui-inline">
-      <label class="layui-form-label">范围</label>
-      <div class="layui-input-inline" style="width: 100px;">
-        <input type="text" id="wsv" placeholder="￥" autocomplete="off" class="layui-input">
-      </div>
-      <div class="layui-form-mid">-</div>
-      <div class="layui-input-inline" style="width: 100px;">
-          <a id="wsb" class="layui-btn layui-btn-mini layui-btn-danger">发送</a>
-      </div>
-    </div>
+        <a class="layui-btn btn-add btn-default" id="btn-add">添加</a>
+        <a class="layui-btn btn-add btn-default" id="btn-refresh"><i class="layui-icon">&#x1002;</i></a>
     </span>
-
 </div>
 
 <!-- 表格 -->
 <div id="dateTable"></div>
 
+
+<form class="layui-form" id="addFrom" lay-filter="editFrom" method="post" style="margin-top:10px;display: none">
+    <div class="layui-form-item">
+        <label class="layui-form-label">分类名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="id" lay-verify="required"  autocomplete="off" placeholder=""
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder=""
+                   class="layui-input">
+        </div>
+    </div>
+    
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn" lay-submit="" lay-filter="submitEditFrom">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
 <script type="text/javascript" src="/admin/frame/layui/layui.js"></script>
 <script type="text/javascript" src="/admin/js/index.js"></script>
 <script type="text/javascript">
@@ -63,21 +75,14 @@
             elem: '#dateTable'                  //指定原始表格元素选择器（推荐id选择器）
             , height: vipTable.getFullHeight()    //容器高度
             , cols: [[                  //标题栏
-                {field: 'id', title: 'ID', width: 80}
-                , {field: 'account', title: '用户名', width: 120}
-                , {field: 'auth_group_name', title: '权限组', width: 120}
-                , {field: 'last_login_time', title: '最后登录时间', width: 180}
-                , {field: 'last_login_ip', title: '最后登录IP', width: 180}
-                , {field: 'create_time', title: '创建时间', width: 180}
+                {field: 'name', title: '名称', width: 120}
+                , {field: 'childNum', title: '文章数', width: 180}
                 , {field: 'status', title: '状态', width: 70}
                 , {fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , id: 'dataCheck'
-            , url: '/admin/json/data_table.json'
-            , method: 'get'
-            , page: true
-            , limits: [30, 60, 90, 150, 300]
-            , limit: 30 //默认采用30
+            , url: '/admin/sort/loadSortList'
+            , method: 'post'
             , loading: true
             , done: function (res, curr, count) {
                 //如果是异步请求数据方式，res即为你接口返回的信息。
@@ -92,12 +97,13 @@
             }
         });
 
-        // 获取选中行
-        table.on('checkbox(dataCheck)', function (obj) {
-            layer.msg('123');
-            console.log(obj.checked); //当前是否选中状态
-            console.log(obj.data); //选中行的相关数据
-            console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+        //弹出添加框
+        $('#btn-add').on('click', function () {
+            layer.open({
+                type:1,
+                area:'370px',
+                content:$("#addFrom")
+            });
         });
 
         // 刷新
@@ -112,7 +118,6 @@
 </script>
 <!-- 表格操作按钮集 -->
 <script type="text/html" id="barOption">
-    <a class="layui-btn layui-btn-mini" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-mini layui-btn-normal" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-mini layui-btn-danger" lay-event="del">删除</a>
 </script>

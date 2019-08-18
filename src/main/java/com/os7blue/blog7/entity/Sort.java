@@ -9,10 +9,6 @@ public class Sort {
 
     private String name;
 
-    private Integer childrens;
-
-    private Integer createTime;
-
     private Integer status;
 
 
