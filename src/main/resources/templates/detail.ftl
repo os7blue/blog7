@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="fly-panel detail-box" style="padding-top: 0;">
- ?;.;'               <a name="comment"></a>
+                <a name="comment"></a>
                 <ul class="jieda photos" id="jieda">
                     <#if atc?? && (atc?size > 0)>
 
@@ -74,9 +74,6 @@
                             </li>
 
                         </#list>
-?'///
-                        '
-                        //////
                     <#else>
                         <li class="fly-none">没有任何评论</li>
 

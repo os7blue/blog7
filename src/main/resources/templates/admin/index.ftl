@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>首页 · 后台模板 HTML</title>
+    <title>blog7后台管理</title>
     <link rel="stylesheet" href="/admin/frame/layui/css/layui.css">
     <link rel="stylesheet" href="/admin/frame/static/css/style.css">
     <link rel="icon" href="/admin/frame/static/image/code.png">
@@ -16,29 +16,29 @@
 <div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
     <!-- header -->
     <div class="layui-header my-header">
-        <a href="index.ftl">
+        <a href="/">
             <!--<img class="my-header-logo" src="" alt="logo">-->
-            <div class="my-header-logo">后台模板 HTML</div>
+            <div class="my-header-logo">blog7后台管理</div>
         </a>
         <div class="my-header-btn">
             <button class="layui-btn layui-btn-small btn-nav"><i class="layui-icon">&#xe65f;</i></button>
         </div>
 
         <!-- 顶部左侧添加选项卡监听 -->
-        <ul class="layui-nav" lay-filter="side-top-left">
-            <!--<li class="layui-nav-item"><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="layui-icon">&#xe621;</i>基础</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>
-                </dl>
-            </li>-->
-        </ul>
+<#--        <ul class="layui-nav" lay-filter="side-top-left">-->
+<#--            <!--<li class="layui-nav-item"><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></li>-->
+<#--            <li class="layui-nav-item">-->
+<#--                <a href="javascript:;"><i class="layui-icon">&#xe621;</i>基础</a>-->
+<#--                <dl class="layui-nav-child">-->
+<#--                    <dd><a href="javascript:;" href-url="demo/btn.html"><i class="layui-icon">&#xe621;</i>按钮</a></dd>-->
+<#--                    <dd><a href="javascript:;" href-url="demo/form.html"><i class="layui-icon">&#xe621;</i>表单</a></dd>-->
+<#--                </dl>-->
+<#--            </li>&ndash;&gt;-->
+<#--        </ul>-->
 
         <!-- 顶部右侧添加选项卡监听 -->
         <ul class="layui-nav my-header-user-nav" lay-filter="side-top-right">
-            <li class="layui-nav-item"><a href="javascript:;" class="pay" href-url="">支持作者</a></li>
+<#--            <li class="layui-nav-item"><a href="javascript:;" class="pay" href-url="">支持作者</a></li>-->
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;"><i class="layui-icon">&#xe629;</i>主题</a>
                 <dl class="layui-nav-child">
@@ -50,9 +50,8 @@
             <li class="layui-nav-item">
                 <a class="name" href="javascript:;"><img src="/admin/frame/static/image/code.png" alt="logo"> Admin </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" href-url="demo/login.html"><i class="layui-icon">&#xe621;</i>登录页</a></dd>
-                    <dd><a href="javascript:;" href-url="demo/map.html"><i class="layui-icon">&#xe621;</i>图表</a></dd>
-                    <dd><a href="/"><i class="layui-icon">&#x1006;</i>退出</a></dd>
+                    <dd><a  href="/" target="_blank"><i class="layui-icon">&#xe621;</i>返回首页</a></dd>
+                    <dd><a href="/singOut"><i class="layui-icon">&#x1006;</i>退出</a></dd>
                 </dl>
             </li>
         </ul>

@@ -125,6 +125,12 @@ public class VisitorPageController {
     }
 
 
+    @GetMapping(value = "/singOut")
+    public String signOut(){
+        UserStatus.setUserState(request,null,UserStatus.USER_STATE_REMOVE);
+        return "redirect:/";
+    }
+
     @GetMapping("/login")
     public String gotoLogin() {
         return "login";
