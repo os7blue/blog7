@@ -1,12 +1,17 @@
 package com.os7blue.blog7.controller.admin;
 
+import com.os7blue.blog7.service.admin.AdminSortService;
 import com.os7blue.blog7.socket.WebSocketServer;
+import com.os7blue.blog7.util.UserStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Map;
 
 /**
   * @Description:    后台管理页面以及相关模板加载
@@ -21,6 +26,24 @@ import java.io.IOException;
 @RequestMapping("/admin")
 public class AdminPageController {
 
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private AdminSortService adminSortService;
+
+    @GetMapping(value = "/singOut")
+    public String signOut(){
+        UserStatus.setUserState(request,null,UserStatus.USER_STATE_REMOVE);
+        return "redirect:/";
+    }
+
+
+    @GetMapping(value = "/article")
+    public String gotoAdminArticle(){
+        
+        return "/admin/adminArticle";
+    }
 
 
     @PostMapping("/ws/push")

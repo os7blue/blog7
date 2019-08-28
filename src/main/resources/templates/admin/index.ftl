@@ -15,7 +15,8 @@
 <!-- layout admin -->
 <div class="layui-layout layui-layout-admin"> <!-- 添加skin-1类可手动修改主题为纯白，添加skin-2类可手动修改主题为蓝白 -->
     <!-- header -->
-    <div class="layui-header my-header">
+    <div class="la
+    yui-header my-header">
         <a href="/">
             <!--<img class="my-header-logo" src="" alt="logo">-->
             <div class="my-header-logo">blog7后台管理</div>
@@ -51,7 +52,7 @@
                 <a class="name" href="javascript:;"><img src="/admin/frame/static/image/code.png" alt="logo"> Admin </a>
                 <dl class="layui-nav-child">
                     <dd><a  href="/" target="_blank"><i class="layui-icon">&#xe621;</i>返回首页</a></dd>
-                    <dd><a href="/singOut"><i class="layui-icon">&#x1006;</i>退出</a></dd>
+                    <dd><a href="/admin/singOut"><i class="layui-icon">&#x1006;</i>退出</a></dd>
                 </dl>
             </li>
         </ul>
@@ -100,7 +101,7 @@
                 <li class="layui-this" lay-id="1"><span><i class="layui-icon">&#xe638;</i>欢迎页</span></li>
             </ul>
             <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
+                <div class="layui-tab-item layui-show" id="ifreamList">
                     <iframe id="iframe" src="demo/welcome.html" frameborder="0"></iframe>
                 </div>
             </div>
@@ -136,6 +137,23 @@
 
 <script type="text/javascript" src="/admin/frame/layui/layui.js"></script>
 <script type="text/javascript" src="/admin/frame/static/js/vip_comm.js"></script>
+
+<script>
+    function loadSrc(obj,src){
+
+        var url = obj.contentWindow.location.href;
+
+        console.log("url:"+url);
+        console.log("src:"+src);
+
+        if (url!==src){
+            window.location.href="/login";
+        }
+        // if (url.indexOf("bizOrderId") != -1) {
+        //     console.log(url);
+        // }
+    }
+</script>
 <script type="text/javascript">
 layui.use(['layer','vip_nav'], function () {
 
