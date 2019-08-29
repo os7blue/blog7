@@ -13,6 +13,11 @@
           "text": "发布新文章",
           "icon": "&#xe621;",
           "href": "/admin/articleInfo/createArticle"
+        },
+        {
+          "text": "文章管理",
+          "icon": "&#xe621;",
+          "href": "/admin/article"
         }
       ]
     }

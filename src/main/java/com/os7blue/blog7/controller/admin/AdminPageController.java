@@ -42,7 +42,7 @@ public class AdminPageController {
     @GetMapping(value = "/article")
     public String gotoAdminArticle(){
         
-        return "/admin/adminArticle";
+        return "admin/articleInfo/adminArticle";
     }
 
 
