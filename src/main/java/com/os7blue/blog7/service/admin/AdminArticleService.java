@@ -2,8 +2,11 @@ package com.os7blue.blog7.service.admin;
 
 import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.mapper.AdminArticleMapper;
+import com.os7blue.blog7.model.ViewArticle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
   * @Description:    文章管理业务逻辑
@@ -28,5 +31,10 @@ public class AdminArticleService {
         article.setStatus(1);
 
         return adminArticleMapper.insertNewArticle(article);
+    }
+
+    public List<ViewArticle> getSomeViewArticleByType() {
+
+        return adminArticleMapper.selectSomeViewArticleListByType();
     }
 }

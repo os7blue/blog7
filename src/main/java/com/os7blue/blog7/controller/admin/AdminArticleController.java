@@ -47,4 +47,23 @@ public class AdminArticleController {
     }
 
 
+    /**
+     * 加载文章管理列表
+     * @return
+     */
+    @PostMapping(value = "/loadArticleList")
+    public ReturnModel loadArticleList(){
+
+        var rm =new ReturnModel();
+        rm.setCode(0);
+
+        var list = adminArticleService.getSomeViewArticleByType();
+        rm.setData(list);
+        rm.setCount(list.size());
+
+        return rm;
+
+    }
+
+
 }

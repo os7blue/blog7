@@ -3,22 +3,7 @@
 
 
 
-    <#--      <!-- tag &ndash;&gt;-->
-    <#--      <div class="fly-panel fly-list-one fly-tag">-->
-    <#--        <h3 class="fly-panel-title">标签云</h3>-->
-    <#--        <div class="fly-panel-content">-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>-->
-    <#--          <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>-->
-    <#--        </div>-->
-    <#--      </div>-->
+
 
 
     <dl class="fly-panel fly-list-one">
@@ -52,6 +37,23 @@
 
 
     </dl>
+
+    <!-- tag -->
+    <div class="fly-panel fly-list-one fly-tag">
+        <h3 class="fly-panel-title">标签云</h3>
+        <div class="fly-panel-content">
+            <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-orange">技巧</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-green">PHP</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-cyan">前端</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-blue">后台</a>
+            <a href="javascript:void(0);" class="layui-badge layui-bg-black">经验</a>
+        </div>
+    </div>
 
     
     <!-- 最近综合 -->

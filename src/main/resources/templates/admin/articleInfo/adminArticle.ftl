@@ -96,13 +96,14 @@
                 , {fixed: 'right', title: '操作', width: 150, align: 'center', toolbar: '#barOption'} //这里的toolbar值是模板元素的选择器
             ]]
             , id: 'dataCheck'
-            , url: '/admin/sort/loadSortList'
+            , url: '/admin/article/loadArticleList'
             , method: 'post'
+            , page: true
+            , limits: [30, 60, 90, 150, 300]
+            , limit: 30 //默认采用30
             , loading: true
             , done: function (res, curr, count) {
-                //隐藏id
-                $("[data-field='id']").css('display','none');
-                //如果是异步请求数据方式，res即为你接口返回的信息。
+                //隐藏id//如果是异步请求数据方式，res即为你接口返回的信息。
                 //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
                 console.log(res);
 
