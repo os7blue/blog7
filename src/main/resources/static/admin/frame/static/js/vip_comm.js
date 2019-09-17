@@ -5,7 +5,7 @@
 
 // 配置
 layui.config({
-    base: '/admin/frame/static/js/'  // 模块目录
+    base: './frame/static/js/'  // 模块目录
 }).extend({                     // 模块别名
     vip_nav: 'vip_nav'
     , vip_tab: 'vip_tab'
@@ -85,7 +85,7 @@ layui.use(['layer', 'element', 'util'], function () {
                 //新增
                 element.tabAdd(card, {
                     title: '<span>' + title + '</span>'
-                    , content: '<iframe src="' + src + '" frameborder="0" onload="loadSrc(this,src)"></iframe>'
+                    , content: '<iframe src="' + src + '" frameborder="0"></iframe>'
                     , id: id
                 });
                 // 关闭弹窗
