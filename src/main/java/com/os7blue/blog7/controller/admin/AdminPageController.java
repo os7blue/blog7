@@ -38,13 +38,6 @@ public class AdminPageController {
     }
 
 
-    @GetMapping(value = "/article")
-    public String gotoAdminArticle(){
-        
-        return "admin/articleInfo/adminArticle";
-    }
-
-
     @PostMapping("/ws/push")
     public void wsPush(String msg) throws IOException {
         WebSocketServer.sendInfo(msg,null);
@@ -73,9 +66,9 @@ public class AdminPageController {
      * 文章管理页面
      * @return
      */
-    @GetMapping(value = "/articleInfo/index")
+    @GetMapping(value = "/article")
     public String gotoArticleInfoIndex(){
-        return "admin/articleInfo/index";
+        return "admin/adminArticle";
     }
 
 

@@ -33,8 +33,12 @@ public class AdminArticleService {
         return adminArticleMapper.insertNewArticle(article);
     }
 
-    public List<ViewArticle> getSomeViewArticleByType() {
+    public List<ViewArticle> getSomeViewArticleByType(Integer page, Integer limit, Integer searchType, String searchValue) {
 
-        return adminArticleMapper.selectSomeViewArticleListByType();
+        return adminArticleMapper.selectSomeViewArticleListByType(page,limit,searchType,searchValue);
+    }
+
+    public Integer getArticleCount() {
+        return adminArticleMapper.selectArticleCount();
     }
 }

@@ -18,6 +18,11 @@
           "text": "文章管理",
           "icon": "&#xe621;",
           "href": "/admin/article"
+        },
+        {
+          "text": "test",
+          "icon": "&#xe621;",
+          "href": "/admin/test"
         }
       ]
     }

@@ -1,7 +1,5 @@
 package com.os7blue.blog7.mapper.provider;
 
-import com.alibaba.druid.sql.visitor.functions.If;
-import com.os7blue.blog7.statusenum.ArticleEnum;
 import org.apache.ibatis.jdbc.SQL;
 
 /**
@@ -14,6 +12,37 @@ import org.apache.ibatis.jdbc.SQL;
   * @Version:        1.0
 */
 public class ArticleProvider {
+
+    /**
+     *
+     * @param page
+     * @param limit
+     * @param searchType
+     * @param searchValue
+     * @return
+     */
+    public String selectSomeViewArticleListByType(Integer page,Integer limit,Integer searchType,String searchValue){
+
+
+        if (page > 0) {
+            page = (page - 1) * limit;
+        }
+
+        return new SQL(){
+            {
+                SELECT("a.*,(SELECT COUNT(*) FROM b7_comment WHERE parentId = a.id) AS commentTotal");
+                FROM("b7_article a");
+
+                //确定搜索类型
+                if (searchType!=null&&searchType!=0){
+
+                }
+
+
+
+            }
+        }.toString()+" ORDER BY a.createTime DESC LIMIT " + page + ","+limit;
+    }
 
 
 

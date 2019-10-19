@@ -48,18 +48,26 @@ public class AdminArticleController {
 
 
     /**
-     * 加载文章管理列表
+     * 按搜索条件分页加载文章列表
+     * @param page 页码
+     * @param limit 加载条数
+     * @param searchType 搜索类型
+     * @param searchValue 搜索内容
      * @return
      */
     @PostMapping(value = "/loadArticleList")
-    public ReturnModel loadArticleList(){
+    public ReturnModel loadArticleList(Integer page,Integer limit,Integer searchType,String searchValue){
 
         var rm =new ReturnModel();
         rm.setCode(0);
 
-        var list = adminArticleService.getSomeViewArticleByType();
+        //获取文章总数
+        Integer count = adminArticleService.getArticleCount();
+        rm.setCount(count);
+
+        //获取文章列表
+        var list = adminArticleService.getSomeViewArticleByType(page,limit,searchType,searchValue);
         rm.setData(list);
-        rm.setCount(list.size());
 
         return rm;
 

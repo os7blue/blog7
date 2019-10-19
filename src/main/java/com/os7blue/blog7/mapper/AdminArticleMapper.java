@@ -1,11 +1,9 @@
 package com.os7blue.blog7.mapper;
 
 import com.os7blue.blog7.entity.Article;
+import com.os7blue.blog7.mapper.provider.ArticleProvider;
 import com.os7blue.blog7.model.ViewArticle;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,10 +30,9 @@ public interface AdminArticleMapper {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     Integer insertNewArticle(Article article);
 
-    @Select(value = "SELECT " +
-            "a.*," +
-            "(SELECT COUNT(*) FROM b7_comment WHERE parentId = a.id) AS commentTotal " +
-            "FROM b7_article a " +
-            "ORDER BY a.createTime DESC")
-    List<ViewArticle> selectSomeViewArticleListByType();
+    @SelectProvider(type = ArticleProvider.class,method = "selectSomeViewArticleListByType")
+    List<ViewArticle> selectSomeViewArticleListByType(Integer page, Integer limit, Integer searchType, String searchValue);
+
+    @Select(value = "SELECT COUNT(*) FROM b7_article")
+    Integer selectArticleCount();
 }

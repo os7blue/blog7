@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>blog7后台管理</title>
-    <link rel="stylesheet" href="/admin/frame/layui/css/layui.css">
+    <link rel="stylesheet" href="/layui25/css/layui.css">
     <link rel="stylesheet" href="/admin/frame/static/css/style.css">
     <link rel="icon" href="/admin/frame/static/image/code.png">
 </head>
@@ -114,11 +114,7 @@
     </div>
 </div>
 
-<!-- pay -->
-<div class="my-pay-box none">
-    <div><img src="/admin/frame/static/image/zfb.png" alt="支付宝"><p>支付宝</p></div>
-    <div><img src="/admin/frame/static/image/wx.png" alt="微信"><p>微信</p></div>
-</div>
+
 
 <!-- 右键菜单 -->
 <div class="my-dblclick-box none">
