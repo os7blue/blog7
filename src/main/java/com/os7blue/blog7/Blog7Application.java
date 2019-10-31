@@ -20,7 +20,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 @SpringBootApplication
 @ServletComponentScan
 @EnableAsync
-@EnableWebSocket
+//@EnableWebSocket
 public class Blog7Application {
 
     public static void main(String[] args) {

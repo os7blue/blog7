@@ -8,8 +8,8 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint("/ws/getPush")
-@Component
+//@ServerEndpoint("/ws/getPush")
+//@Component
 public class WebSocketServer {
 
 
