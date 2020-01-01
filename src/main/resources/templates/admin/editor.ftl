@@ -47,7 +47,6 @@
 
             <div class="layui-form-item">
                 <div id="editor" style="margin: 50px 0 50px 0">
-                    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
                 </div>
             </div>
 
