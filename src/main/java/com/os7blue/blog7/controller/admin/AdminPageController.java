@@ -52,9 +52,9 @@ public class AdminPageController {
      * 新建文章页面
      * @return
      */
-    @GetMapping(value = "/articleInfo/createArticle")
+    @GetMapping(value = "/article/editor")
     public String gotoCreateArticle() {
-        return "admin/articleInfo/createArticle";
+        return "admin/editor";
     }
 
     @GetMapping(value = "/test")
@@ -68,7 +68,7 @@ public class AdminPageController {
      */
     @GetMapping(value = "/article")
     public String gotoArticleInfoIndex(){
-        return "admin/adminArticle";
+        return "/admin/article";
     }
 
 
