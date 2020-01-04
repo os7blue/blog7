@@ -73,5 +73,18 @@ public class AdminArticleController {
 
     }
 
+    @PostMapping(value = "/delete")
+    public ReturnModel delete(Integer id){
+
+        var rm = new ReturnModel();
+        rm.setCode(0);
+        int row = adminArticleService.deleteOneArticleById(id);
+        if (row>0){
+            rm.setCode(1);
+        }
+        return rm;
+
+    }
+
 
 }

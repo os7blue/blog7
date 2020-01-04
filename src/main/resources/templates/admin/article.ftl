@@ -45,8 +45,7 @@
         </fieldset>
 
         <div class="layui-btn-group">
-            <button class="layui-btn data-add-btn">添加</button>
-            <button class="layui-btn layui-btn-danger data-delete-btn">删除</button>
+            <button class="layui-btn data-add-btn">编辑新文章</button>
         </div>
         <table class="layui-hide" id="articleTable" lay-filter="articleTable"></table>
         <script type="text/html" id="currentTableBar">
@@ -73,8 +72,15 @@
                 {field: 'title', width: 80, title: '标题'},
                 {field: 'content', width: 80, title: '内容'},
                 {field: 'titleImg', width: 80, title: '标题图',event:'cti'},
-                {field: 'createTime', width: 80, title: '创建时间', sort: true},
-                {field: 'updateTime', width: 80, title: '最后更新时间', sort: true},
+                {field: 'createTime', width: 80, title: '创建时间', sort: true,templet:function (rowData) {
+                        var time = new Date(rowData.createTime);
+                        return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日 星期" + (time.getDay() + 1) + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+                    }},
+                {field: 'updateTime', width: 80, title: '最后更新时间', sort: true,templet:function (rowData) {
+                    var time = new Date(rowData.updateTime);
+                    return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日 星期" + (time.getDay() + 1) + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+
+                    }},
                 {field: 'mark', width: 80, title: '备注'},
                 {field: 'views', width: 135, title: '浏览次数', sort: true},
                 {field: 'label', width: 135, title: '标签', sort: true},
@@ -91,6 +97,28 @@
 
         table.on('tool(articleTable)',function (obj) {
             var layEvent = obj.event;
+
+
+            if (layEvent==='delete'){
+                layer.open({
+                    content:'确认删除文章['+obj.data.title+']吗？',
+                    btn:['确认','取消'],
+                    yes:function (index,layero) {
+                        $.post('/admin/article/delete',{id:obj.data.id},function (res) {
+                            if (res.code===1){
+                                layer.close(index);
+                                layer.msg("删除成功");
+                                articleTable.reload();
+                            }else {
+                                layer.msg('删除失败或发生错误，请检查后重试');
+                            }
+                        });
+                    },
+                    btn2:function (index,layero) {
+
+                    }
+                });
+            }
 
             //监听单元格点击事件，显示文章标题图
             if (layEvent==='cti'){

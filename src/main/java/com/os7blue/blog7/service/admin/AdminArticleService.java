@@ -41,4 +41,8 @@ public class AdminArticleService {
     public Integer getArticleCount() {
         return adminArticleMapper.selectArticleCount();
     }
+
+    public int deleteOneArticleById(Integer id) {
+        return adminArticleMapper.deleteArticle(id);
+    }
 }

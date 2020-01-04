@@ -35,4 +35,7 @@ public interface AdminArticleMapper {
 
     @Select(value = "SELECT COUNT(*) FROM b7_article")
     Integer selectArticleCount();
+
+    @Delete(value = "DELETE FROM b7_article WHERE id = #{id}")
+    int deleteArticle(Integer id);
 }
