@@ -34,6 +34,11 @@
               "href": "/admin/article/editor",
               "icon": "fa fa-tachometer",
               "target": "_self"
+            }, {
+              "title": "评论管理",
+              "href": "/admin/article/comment",
+              "icon": "fa fa-tachometer",
+              "target": "_self"
             }
           ]
         },

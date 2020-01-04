@@ -8,10 +8,10 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
  * 原生webstock配置
  */
-@Configuration
+//@Configuration
 public class WebSocketConfig {
 
-    @Bean
+//    @Bean
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }

@@ -111,7 +111,9 @@
         editor.customConfig.uploadImgServer = "/admin/upload/getUrlAfterUpload";
         editor.customConfig.uploadFileName = 'file';
         editor.customConfig.pasteFilterStyle = false;
-        editor.customConfig.uploadImgMaxLength = 5;
+        editor.customConfig.uploadImgMaxLength = 7;
+        editor.customConfig.uploadImgMaxSize = 20 * 1024 * 1024
+
 
         editor.customConfig.uploadImgHooks = {
             // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置

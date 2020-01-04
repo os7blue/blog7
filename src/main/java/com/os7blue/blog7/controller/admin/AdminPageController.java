@@ -57,6 +57,11 @@ public class AdminPageController {
         return "admin/editor";
     }
 
+    @GetMapping(value = "/article/comment")
+    public String gotoCreateComment() {
+        return "admin/comment";
+    }
+
     @GetMapping(value = "/test")
     public String gotoTest() {
         return "admin/test";
@@ -70,6 +75,8 @@ public class AdminPageController {
     public String gotoArticleInfoIndex(){
         return "/admin/article";
     }
+
+
 
 
 
