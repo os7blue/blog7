@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/admin/layuimini/css/public.css" media="all">
 </head>
 <body>
@@ -54,15 +54,14 @@
         </script>
     </div>
 </div>
-<script src="/admin/layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
+<script src="/admin/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['laydate','form', 'table','layer','layuimini'], function () {
+    layui.use(['laydate','form', 'table','layer'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table,
             layer=layui.layer,
-            laydate = layui.laydate,
-            layuimini = layui.layuimini;
+            laydate = layui.laydate;
 
         var articleTable = table.render({
             elem: '#articleTable',
@@ -104,7 +103,7 @@
 
 
             if (layEvent==='edit'){
-                layuimini.hash('page/welcome-1.html');
+
             }
 
             //删除按钮

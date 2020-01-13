@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="/admin/layuimini/images/favicon.ico">
-    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="/admin/layuimini/css/layuimini.css" media="all">
     <link rel="stylesheet" href="/admin/layuimini/lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <!--[if lt IE 9]>
@@ -98,7 +98,7 @@
 
 
 
-<script src="/admin/layuimini/lib/layui-v2.5.4/layui.js?v=1.0.4" charset="utf-8"></script>
+<script src="/admin/layuimini/lib/layui-v2.5.5/layui.js?v=1.0.4" charset="utf-8"></script>
 <script src="/admin/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {
