@@ -18,25 +18,26 @@
       "icon": "fa fa-address-book",
       "child": [
         {
-          "title": "内容管理",
+          "title": "主页模板",
           "href": "",
           "icon": "fa fa-home",
           "target": "_self",
           "child": [
             {
-              "title": "文章管理",
-              "href": "/admin/article",
+              "title": "主页一",
+              "href": "page/welcome-1.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
             {
-              "title": "编辑文章",
-              "href": "/admin/article/editor",
+              "title": "主页二",
+              "href": "page/welcome-2.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
-            }, {
-              "title": "评论管理",
-              "href": "/admin/article/comment",
+            },
+            {
+              "title": "主页三",
+              "href": "page/welcome-3.html",
               "icon": "fa fa-tachometer",
               "target": "_self"
             }
@@ -174,6 +175,12 @@
           "title": "富文本编辑器",
           "href": "page/editor.html",
           "icon": "fa fa-edit",
+          "target": "_self"
+        },
+        {
+          "title": "省市县区选择器",
+          "href": "page/area.html",
+          "icon": "fa fa-rocket",
           "target": "_self"
         }
       ]

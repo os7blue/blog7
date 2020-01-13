@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <link rel="icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="lib/layui-v2.5.4/css/layui.css" media="all">
+    <link rel="stylesheet" href="lib/layui-v2.5.5/css/layui.css" media="all">
     <link rel="stylesheet" href="css/layuimini.css" media="all">
     <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
     <!--[if lt IE 9]>
@@ -42,11 +42,15 @@
         </ul>
 
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item">
+
+            <li class="layui-nav-item" lay-unselect>
                 <a href="javascript:;" data-refresh="刷新"><i class="fa fa-refresh"></i></a>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item" lay-unselect>
                 <a href="javascript:;" data-clear="清理" class="layuimini-clear"><i class="fa fa-trash-o"></i></a>
+            </li>
+            <li class="layui-nav-item mobile layui-hide-xs" lay-unselect>
+                <a href="javascript:;" data-check-screen="full"><i class="fa fa-arrows-alt"></i></a>
             </li>
             <li class="layui-nav-item layuimini-setting">
                 <a href="javascript:;">admin</a>
@@ -62,7 +66,7 @@
                     </dd>
                 </dl>
             </li>
-            <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs">
+            <li class="layui-nav-item layuimini-select-bgcolor mobile layui-hide-xs" lay-unselect>
                 <a href="javascript:;" data-bgcolor="配色方案"><i class="fa fa-ellipsis-v"></i></a>
             </li>
         </ul>
@@ -103,7 +107,7 @@
 </script>
 <!--百度统计代码-结束-->
 
-<script src="lib/layui-v2.5.4/layui.js?v=1.0.4" charset="utf-8"></script>
+<script src="lib/layui-v2.5.5/layui.js?v=1.0.4" charset="utf-8"></script>
 <script src="js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
     layui.use(['element', 'layer', 'layuimini'], function () {

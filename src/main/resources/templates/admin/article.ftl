@@ -56,12 +56,13 @@
 </div>
 <script src="/admin/layuimini/lib/layui-v2.5.4/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['laydate','form', 'table','layer'], function () {
+    layui.use(['laydate','form', 'table','layer','layuimini'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table,
             layer=layui.layer,
-            laydate = layui.laydate;
+            laydate = layui.laydate,
+            layuimini = layui.layuimini;
 
         var articleTable = table.render({
             elem: '#articleTable',
@@ -98,13 +99,21 @@
         table.on('tool(articleTable)',function (obj) {
             var layEvent = obj.event;
 
+            var data = obj.data;
 
+
+
+            if (layEvent==='edit'){
+                layuimini.hash('page/welcome-1.html');
+            }
+
+            //删除按钮
             if (layEvent==='delete'){
                 layer.open({
-                    content:'确认删除文章['+obj.data.title+']吗？',
+                    content:'确认删除文章['+data.title+']吗？',
                     btn:['确认','取消'],
                     yes:function (index,layero) {
-                        $.post('/admin/article/delete',{id:obj.data.id},function (res) {
+                        $.post('/admin/article/delete',{id:data.id},function (res) {
                             if (res.code===1){
                                 layer.close(index);
                                 layer.msg("删除成功");
@@ -132,7 +141,7 @@
                             {
                                 "alt": "图片名",
                                 "pid": 666, //图片id
-                                "src": obj.data.titleImg, //原图地址
+                                "src": data.titleImg, //原图地址
                                 "thumb": "" //缩略图地址
                             }
                         ]
