@@ -1,5 +1,6 @@
 package com.os7blue.blog7.mapper.provider;
 
+import com.os7blue.blog7.entity.Article;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.text.ParseException;
@@ -21,11 +22,11 @@ public class ArticleProvider {
      *
      * @param page
      * @param limit
-     * @param searchType
-     * @param searchValue
+     * @param
+     * @param
      * @return
      */
-    public String selectSomeViewArticleListByType(Integer page,Integer limit,Integer searchType,String searchValue) throws ParseException {
+    public String selectSomeViewArticleListByType(Integer page, Integer limit, Article article) throws ParseException {
 
 
         if (page > 0) {
@@ -38,30 +39,30 @@ public class ArticleProvider {
                 FROM("b7_article a");
 
                 //确定搜索类型
-                if (searchType!=null&&searchType!=0&&searchValue!=null){
-
-                    switch (searchType){
-                        case 1:
-                            WHERE("a.title LIKE '%${searchValue}%'");
-                            break;
-                        case 2:
-                            WHERE("a.content LIKE '%${searchValue}%'");
-                            break;
-                        case 3:
-                            // 按创建日期搜索
-                            long time = new SimpleDateFormat("yyyy-MM-dd").parse(searchValue).getTime();
-                            WHERE("a.createTime>="+time);
-                            break;
-                        case 4:
-                            long time1 = new SimpleDateFormat("yyyy-MM-dd").parse(searchValue).getTime();
-                            WHERE("a.updateTime>="+time1);
-                            break;
-                        default:
-                    }
-
-
-
-                }
+//                if (searchType!=null&&searchType!=0&&searchValue!=null){
+//
+//                    switch (searchType){
+//                        case 1:
+//                            WHERE("a.title LIKE '%${searchValue}%'");
+//                            break;
+//                        case 2:
+//                            WHERE("a.content LIKE '%${searchValue}%'");
+//                            break;
+//                        case 3:
+//                            // 按创建日期搜索
+//                            long time = new SimpleDateFormat("yyyy-MM-dd").parse(searchValue).getTime();
+//                            WHERE("a.createTime>="+time);
+//                            break;
+//                        case 4:
+//                            long time1 = new SimpleDateFormat("yyyy-MM-dd").parse(searchValue).getTime();
+//                            WHERE("a.updateTime>="+time1);
+//                            break;
+//                        default:
+//                    }
+//
+//
+//
+//                }
 
                 ORDER_BY("a.createTime DESC");
 

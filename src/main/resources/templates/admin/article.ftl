@@ -16,24 +16,30 @@
         <fieldset class="layui-elem-field layuimini-search">
             <legend>搜索</legend>
             <div style="margin: 10px 10px 10px 10px">
-                <form class="layui-form layui-form-pane" lay-filter="searchForm" action="">
+                <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label" >搜索内容</label>
-                            <div class="layui-input-inline" id="sed">
-                                <input type="text" id="searchValue" name="searchValue" autocomplete="off" placeholder="输入搜搜条件" lay-filter="searchValue" class="layui-input">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <label class="layui-form-label">搜索类型</label>
-                            <div class="layui-input-block">
-                                <select name="searchType" lay-filter="searchType">
-                                    <option value=""></option>
-                                    <option value="1">标题</option>
-                                    <option value="2">内容</option>
-                                    <option value="3">创建时间</option>
-                                    <option value="4">更新时间</option>
-                                </select>
+                            <label class="layui-form-label">内容</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="content" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">创建日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="createTime" id="createTime" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">修改日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="updateTime" name="updateTime" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-inline">
@@ -95,6 +101,18 @@
         });
 
 
+        /**
+         * 渲染日期选择框
+         */
+        laydate.render({
+            elem: '#updateTime'
+        });
+
+        laydate.render({
+            elem: '#createTime'});
+
+
+
         table.on('tool(articleTable)',function (obj) {
             var layEvent = obj.event;
 
@@ -150,38 +168,18 @@
         });
 
 
-        //监听搜索类型选择变化
-        form.on('select(searchType)', function(data){
-            //按日期查询
-            if (data.value==3||data.value==4){
-
-                $('#searchValue').attr('lay-verify','date');
-
-
-                laydate.render({
-                    elem: '#searchValue', //指定元素
-                    value:new Date()
-                });
-
-            //文本查询
-            }else{
-                $('#sed').html('');
-                $('#sed').append('<input type="text" id="searchValue" name="searchValue" autocomplete="off" lay-filter="searchValue" placeholder="输入搜索条件" class="layui-input">');
-
-            }
-        });
-
         //搜索框监听
         form.on('submit(searchBtn)',function (obj) {
 
             var data = obj.field;
 
+            //将日期格式转化成时间戳
+            data.createTime=new Date(data.createTime).getTime();
+            data.updateTime=new Date(data.updateTime).getTime();
+
             console.log(data);
             articleTable.reload({
-                where:{
-                    searchType:data.searchType,
-                    searchValue:data.searchValue
-                }
+                where:data
             });
 
         });

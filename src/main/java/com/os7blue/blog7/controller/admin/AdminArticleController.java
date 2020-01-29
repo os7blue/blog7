@@ -6,6 +6,7 @@ import com.os7blue.blog7.service.admin.AdminArticleService;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,17 +57,17 @@ public class AdminArticleController {
      * @return
      */
     @PostMapping(value = "/loadArticleList")
-    public ReturnModel loadArticleList(Integer page,Integer limit,Integer searchType,String searchValue){
+    public ReturnModel loadArticleList(Integer page,Integer limit,Article article){
 
         var rm =new ReturnModel();
         rm.setCode(0);
-
+        System.out.println(article);
         //获取文章总数
         Integer count = adminArticleService.getArticleCount();
         rm.setCount(count);
 
         //获取文章列表
-        var list = adminArticleService.getSomeViewArticleByType(page,limit,searchType,searchValue);
+        var list = adminArticleService.getSomeViewArticleByType(page,limit,article);
         rm.setData(list);
 
         return rm;
@@ -75,6 +76,8 @@ public class AdminArticleController {
 
     @PostMapping(value = "/delete")
     public ReturnModel delete(Integer id){
+
+
 
         var rm = new ReturnModel();
         rm.setCode(0);

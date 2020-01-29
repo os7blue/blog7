@@ -12,6 +12,11 @@ import java.util.List;
 @Mapper
 public interface AdminArticleMapper {
 
+    /**
+     *
+     * @param article
+     * @return
+     */
     @Insert(value = "INSERT INTO b7_article(" +
             "title," +
             "titleImg," +
@@ -31,7 +36,7 @@ public interface AdminArticleMapper {
     Integer insertNewArticle(Article article);
 
     @SelectProvider(type = ArticleProvider.class,method = "selectSomeViewArticleListByType")
-    List<ViewArticle> selectSomeViewArticleListByType(Integer page, Integer limit, Integer searchType, String searchValue);
+    List<ViewArticle> selectSomeViewArticleListByType(Integer page, Integer limit, Article article);
 
     @Select(value = "SELECT COUNT(*) FROM b7_article")
     Integer selectArticleCount();
