@@ -32,5 +32,5 @@ build/
 
 
 ### private config ###
-*.yml
-*.properties
+src/main/resources/application.properties
+src/main/resources/application.yml
