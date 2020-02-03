@@ -65,6 +65,13 @@
             <version>1.1.21</version>
         </dependency>
 
+        <!--mybatis自动建表插件A.CTable-->
+        <dependency>
+            <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+            <artifactId>mybatis-enhance-actable</artifactId>
+            <version>1.0.8.1.RELEASE</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
