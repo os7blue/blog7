@@ -2,7 +2,6 @@ package com.os7blue.blog7.entity;
 
 import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
-import com.gitee.sunchenbin.mybatis.actable.annotation.Unique;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 
@@ -19,7 +18,6 @@ import lombok.Data;
 @Table(name = "b7_article")
 public class Article {
 
-    @Unique
     @Column(name = "id",type = MySqlTypeConstant.INT,isKey = true,isAutoIncrement = true,isNull = false)
     private Integer id;
 
