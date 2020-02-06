@@ -1,4 +1,4 @@
-eserver:
+server:
   port: 7777
 
 #配置spring相关

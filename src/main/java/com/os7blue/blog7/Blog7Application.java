@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
-@ComponentScan("com.gitee.sunchenbin.mybatis.actable.manager.*")
+@ComponentScan({"com.gitee.sunchenbin.mybatis.actable.manager.*","com.os7blue.blog7.*"})
 @MapperScan("com.gitee.sunchenbin.mybatis.actable.dao.*")
 public class Blog7Application {
 

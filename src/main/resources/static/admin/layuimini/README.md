@@ -31,7 +31,7 @@ layuimini后台模板
 ## 效果预览
 > 总体预览
 
-![Image text](./images/home.png)
+![Image text](images/home.png)
 
 ## 使用说明
 

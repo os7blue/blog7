@@ -18,14 +18,14 @@
       "icon": "fa fa-address-book",
       "child": [
         {
-          "title": "主页模板",
+          "title": "内容管理",
           "href": "",
           "icon": "fa fa-home",
           "target": "_self",
           "child": [
             {
-              "title": "主页一",
-              "href": "page/welcome-1.html",
+              "title": "文章管理",
+              "href": "/admin/article",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
