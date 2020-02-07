@@ -43,8 +43,12 @@
                             </div>
                         </div>
                         <div class="layui-inline">
-                            <button type="submit" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索</button>
-                        </div>
+                            <select name="city" lay-verify="">
+                                <option value="">请选择一个城市</option>
+                                <option value="010">北京</option>
+                                <option value="021">上海</option>
+                                <option value="0571">杭州</option>
+                            </select>                           </div>
                     </div>
                 </form>
             </div>
@@ -57,7 +61,7 @@
             </div>
         </script>
 
-        <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+        <table class="layui-hide" id="articleTable" lay-filter="articleTable"></table>
 
         <script type="text/html" id="currentTableBar">
             <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
@@ -75,26 +79,36 @@
             layuimini = layui.layuimini;
 
         table.render({
-            elem: '#currentTableId',
-            url: '/admin/layuimini/api/table.json',
+            elem: '#articleTable',
+            url: '/admin/article/load',
             toolbar: '#toolbarDemo',
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
                 icon: 'layui-icon-tips'
             }],
-            cols: [[
-                {type: "checkbox", width: 50, fixed: "left"},
-                {field: 'id', width: 80, title: 'ID', sort: true},
-                {field: 'username', width: 80, title: '用户名'},
-                {field: 'sex', width: 80, title: '性别', sort: true},
-                {field: 'city', width: 80, title: '城市'},
-                {field: 'sign', title: '签名', minWidth: 150},
-                {field: 'experience', width: 80, title: '积分', sort: true},
-                {field: 'score', width: 80, title: '评分', sort: true},
-                {field: 'classify', width: 80, title: '职业'},
-                {field: 'wealth', width: 135, title: '财富', sort: true},
-                {title: '操作', minWidth: 50, templet: '#currentTableBar', fixed: "right", align: "center"}
+            cols:  [[
+                {field: 'id', width: 80, title: 'id'},
+                {field: 'title', width: 80, title: '标题'},
+                {field: 'content', width: 80, title: '内容'},
+                {field: 'titleImg', width: 80, title: '标题图',event:'cti'},
+                {field: 'createTime', width: 80, title: '创建时间', sort: true,templet:function (rowData) {
+                        var time = new Date(rowData.createTime);
+                        return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日 星期" + (time.getDay() + 1) + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+                    }},
+                {field: 'updateTime', width: 80, title: '最后更新时间', sort: true,templet:function (rowData) {
+                        var time = new Date(rowData.updateTime);
+                        return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日 星期" + (time.getDay() + 1) + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+
+                    }},
+                {field: 'commentSwitch', width: 80, title: '评论开关'},
+                {field: 'remark', width: 80, title: '备注'},
+                {field: 'views', width: 135, title: '浏览次数', sort: true},
+                {field: 'label', width: 135, title: '标签', sort: true},
+                {field: 'status', width: 135, title: '状态', sort: true},
+                {field: 'parentName', width: 135, title: '分类', sort: true},
+                {field: 'commentTotal', width: 135, title: '评论数', sort: true},
+                {title: '操作', minWidth: 150, toolbar: '#currentTableBar', fixed: "right", align: "center"}
             ]],
             limits: [10, 15, 20, 25, 50, 100],
             limit: 15,

@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name = "b7_article")
 public class Article {
 
-    @Column(name = "id",type = MySqlTypeConstant.INT,isKey = true,isAutoIncrement = true,isNull = false)
+    @Column(name = "id",type = MySqlTypeConstant.INT,isKey = true,isAutoIncrement = true)
     private Integer id;
 
     @Column(name = "title",type = MySqlTypeConstant.VARCHAR,isNull = false,comment = "文章标题")

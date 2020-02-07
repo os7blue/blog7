@@ -19,8 +19,8 @@ import lombok.Data;
 @Table(name="b7_log")
 public class Log {
 
-    @Unique
-    @Column(name = "id",type = MySqlTypeConstant.INT,isNull = false,isKey = true,isAutoIncrement = true)
+
+    @Column(name = "id",type = MySqlTypeConstant.INT,isKey = true,isAutoIncrement = true)
     private Integer id;
 
     @Column(name = "operate",type = MySqlTypeConstant.VARCHAR,isNull = false)

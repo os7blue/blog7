@@ -21,8 +21,7 @@ import javax.print.attribute.standard.MediaSize;
 @Table(name = "b7_comment")
 public class Comment {
 
-    @Unique
-    @Column(name = "id",type = MySqlTypeConstant.INT,isNull = false,isKey = true,isAutoIncrement = true)
+    @Column(name = "id",type = MySqlTypeConstant.INT,isKey = true,isAutoIncrement = true)
     private Integer id;
 
     @Column(name = "parentId",type = MySqlTypeConstant.INT,isNull = false,defaultValue = "0",comment = "父级id")

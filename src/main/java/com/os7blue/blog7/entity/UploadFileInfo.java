@@ -2,7 +2,6 @@ package com.os7blue.blog7.entity;
 
 import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
-import com.gitee.sunchenbin.mybatis.actable.annotation.Unique;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
 import lombok.Data;
 
@@ -16,11 +15,10 @@ import lombok.Data;
 * @Version:        1.0
 */
 @Data
-@Table(name="b7_uploadFile")
-public class UploadFile {
+@Table(name="b7_uploadFileInfo")
+public class UploadFileInfo {
 
-    @Unique
-    @Column(name = "id",type = MySqlTypeConstant.INT,isNull = false,isKey = true,isAutoIncrement = true,comment ="文件名采用uuid")
+    @Column(name = "id",type = MySqlTypeConstant.VARCHAR,isKey = true,comment ="文件名采用uuid")
     private String id;
 
     @Column(name = "type",type = MySqlTypeConstant.VARCHAR,isNull = false,comment = "文件类型")
@@ -30,7 +28,7 @@ public class UploadFile {
     private long size;
 
     @Column(name="createTime",type = MySqlTypeConstant.BIGINT,isNull = false,comment = "创建时间")
-    private String createTime;
+    private long createTime;
 
     @Column(name = "url",type = MySqlTypeConstant.VARCHAR,isNull = false,comment = "对外暴露资源url")
     private String url;

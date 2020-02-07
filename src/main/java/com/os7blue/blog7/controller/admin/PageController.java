@@ -33,6 +33,11 @@ public class PageController {
         return "admin/article";
     }
 
+    @GetMapping("/editor")
+    public String gotoEditor(){
+        return "admin/editor";
+    }
+
 
 
 

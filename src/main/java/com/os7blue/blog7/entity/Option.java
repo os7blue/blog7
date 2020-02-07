@@ -2,7 +2,9 @@ package com.os7blue.blog7.entity;
 
 import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
 import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
+import com.gitee.sunchenbin.mybatis.actable.annotation.Unique;
 import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
+import com.sun.javafx.beans.IDProperty;
 import lombok.Data;
 
 
@@ -19,9 +21,9 @@ import lombok.Data;
 @Table(name = "b7_option")
 public class Option {
 
-    @Column(name = "key",type = MySqlTypeConstant.VARCHAR,comment = "设置项key")
-    private String key;
+    @Column(name = "key",type = MySqlTypeConstant.VARCHAR,isKey = true,comment = "设置项key")
+    private String name;
 
     @Column(name="value",type = MySqlTypeConstant.VARCHAR,comment = "设置项value")
-    private String value;
+    private String content;
 }

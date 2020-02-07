@@ -30,8 +30,8 @@
               "target": "_self"
             },
             {
-              "title": "主页二",
-              "href": "page/welcome-2.html",
+              "title": "编辑文章",
+              "href": "admin/editor",
               "icon": "fa fa-tachometer",
               "target": "_self"
             },
