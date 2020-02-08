@@ -25,18 +25,16 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">评论开关</label>
                     <div class="layui-input-inline">
-                        <input type="checkbox" name="yyy" lay-skin="switch" lay-text="允许评论|禁止评论" checked>
+                        <input type="checkbox" name="commentSwitch" value="1" lay-skin="switch" lay-text="允许评论|禁止评论" checked>
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">分类选择</label>
                     <div class="layui-input-inline">
 
-                        <select name="city" lay-verify="">
+                        <select name="parentId" lay-verify="">
                             <option value="0">默认分类</option>
-                            <option value="010">北京</option>
-                            <option value="021">上海</option>
-                            <option value="0571">杭州</option>
+
                         </select>
 
                     </div>
@@ -100,7 +98,7 @@
             element=layui.element;
 
         //封面图上传配置
-        var titlePic = "/res/images/code.png";
+        let titlePic = "/res/images/code.png";
         //拖拽上传封面图片
         upload.render({
             elem: '#test10'
@@ -113,7 +111,7 @@
                 //上传成功
                 if(res.code === 1){
                     $('#demo1').attr('src', res.data);
-                    titlePic=res.data.url;
+                    titlePic=res.data;
 
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #FF5722;">上传成功</span>');
@@ -135,11 +133,11 @@
 
         //富文本编辑器配置
         var editor = new wangEditor('#editor');
-        editor.customConfig.uploadImgServer = "/admin/upload/getUrlAfterUpload";
+        editor.customConfig.uploadImgServer = "/admin/upload";
         editor.customConfig.uploadFileName = 'file';
         editor.customConfig.pasteFilterStyle = false;
         editor.customConfig.uploadImgMaxLength = 7;
-        editor.customConfig.uploadImgMaxSize = 20 * 1024 * 1024
+        editor.customConfig.uploadImgMaxSize = 20 * 1024 * 1024;
 
 
         editor.customConfig.uploadImgHooks = {
@@ -152,14 +150,26 @@
 
                 // 举例：假如上传图片成功后，服务器端返回的是 {url:'....'} 这种格式，即可这样插入图片：
 
-                var url = result.data.url;
+                var url = result.data;
 
                 if (titlePic==="/res/images/code.png"){
-                    titlePic=url;
+                    titlePic=url[0];
                 }
 
+
+                if (url instanceof Array){
+
+                    for (let i = 0; i < url.length; i++) {
+                        insertImg(url[i]);
+                    }
+                }else {
+                    insertImg(url);
+                }
+
+
+
                 layer.msg('上传成功');
-                insertImg(url);
+
 
 
                 // result 必须是一个 JSON 格式字符串！！！否则报错
@@ -203,10 +213,12 @@
             var param = {
                 title       :   data.field.title,
                 titleImg    :   titlePic,
-                content     :   editor.txt.html()
+                content     :   editor.txt.html(),
+                parentId    :   data.field.parentId,
+                commentSwitch : data.field.commentSwitch
             };
 
-            $.post("/admin/article/createArticle",param,function (res) {
+            $.post("/admin/article/create",param,function (res) {
                 if (res.code===1){
                     // layer.open({
                     //     type: 1,

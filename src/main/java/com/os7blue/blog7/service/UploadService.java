@@ -3,7 +3,7 @@ package com.os7blue.blog7.service;
 import com.os7blue.blog7.entity.UploadFileInfo;
 import com.os7blue.blog7.mapper.UploadFileMapper;
 import com.os7blue.blog7.util.BaseUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 /**
 * @Description:    文件上传处理
@@ -38,7 +39,48 @@ public class UploadService {
     private String uploadFolderRootPath;
 
 
+    /**
+     * DANWENJIANSHANGCHUAN
+     * @param multipartFile
+     * @return
+     * @throws IOException
+     */
     public String singleFile(MultipartFile multipartFile) throws IOException {
+
+        UploadFileInfo uploadFileInfo = singleFileSave(multipartFile);
+
+        uploadFileMapper.insertUploadFileInfo(uploadFileInfo);
+
+
+        return uploadFileInfo.getUrl();
+
+
+
+    }
+
+    /**
+     * 多文件上传
+     * @param multipartFiles
+     * @return
+     */
+    public String[] multipleFile(MultipartFile[] multipartFiles) throws IOException {
+
+        var uploadFileInfoList = new ArrayList<UploadFileInfo>();
+        String[] fileUrls =new String[multipartFiles.length];
+
+        for (int i = 0; i < multipartFiles.length; i++) {
+            UploadFileInfo uploadFileInfo = singleFileSave(multipartFiles[i]);
+            uploadFileInfoList.add(uploadFileInfo);
+            fileUrls[i]=uploadFileInfo.getUrl();
+        }
+
+        uploadFileMapper.insertUploadFileInfos(uploadFileInfoList);
+
+        return fileUrls;
+    }
+
+
+    private UploadFileInfo singleFileSave(MultipartFile multipartFile) throws IOException {
 
         UploadFileInfo uploadFileInfo = new UploadFileInfo();
 
@@ -55,20 +97,15 @@ public class UploadService {
         //使用绝对路径保存文件
         multipartFile.transferTo(new File(uploadFolderRootPath+fileUrl));
 
-        uploadFileMapper.insertUploadFileInfo(uploadFileInfo);
-
-
-        return uploadFileInfo.getUrl();
-
-
+        return uploadFileInfo;
 
     }
 
-    public String multipleFile(MultipartFile[] titImg) {
-        return null;
-    }
 
-
+    /**
+     * 拼接当前日期路径并生成文件夹
+     * @return
+     */
     public String getSaveDatePath(){
         LocalDateTime now = LocalDateTime.now();
         String year = String.valueOf(now.getYear());

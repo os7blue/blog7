@@ -36,20 +36,21 @@ public class UploadController {
      * @return
      */
     @PostMapping()
-    public ReturnModel upload(@RequestParam("file") MultipartFile[] titImg) throws IOException {
+    public ReturnModel upload(@RequestParam("file") MultipartFile[] multipartFiles) throws IOException {
 
         var rm = new ReturnModel();
         rm.setCode(1);
 
         //单文件上传
-        if (titImg.length<=1 ){
-            String url = uploadService.singleFile(titImg[0]);
+        if (multipartFiles.length<=1 ){
+            String url = uploadService.singleFile(multipartFiles[0]);
+
             rm.setData(url);
             return rm;
         }
 
-        String urls = uploadService.multipleFile(titImg);
-        rm.setCode(1);
+        String[] urls = uploadService.multipleFile(multipartFiles);
+        rm.setData(urls);
 
 
         return rm;

@@ -1,7 +1,9 @@
 package com.os7blue.blog7.controller.admin;
 
 import com.os7blue.blog7.entity.Article;
+import com.os7blue.blog7.entity.ReturnModel;
 import com.os7blue.blog7.service.ArticleService;
+import lombok.var;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +37,22 @@ public class ArticleController {
     public void load(Article article,Integer page,Integer limit){
 
         articleService.loadArticleList(article,page,limit);
+
+
+
+    }
+
+    @PostMapping("/create")
+    public ReturnModel create(Article article){
+
+        var rm = new ReturnModel();
+        rm.setCode(1);
+
+        int id = articleService.createArticle(article);
+        rm.setData(id);
+
+        return rm;
+
 
 
 
