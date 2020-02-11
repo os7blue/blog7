@@ -1,9 +1,11 @@
 package com.os7blue.blog7.service;
 
 import com.os7blue.blog7.entity.Article;
+import com.os7blue.blog7.entity.model.ViewArticle;
 import com.os7blue.blog7.mapper.ArticleMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -15,15 +17,20 @@ public class ArticleService {
         this.articleMapper = articleMapper;
     }
 
+
+    public int getArticleCount(){
+        return articleMapper.selectArticleCount();
+    }
+
     /**
-     *
-     * @param article
+     *  @param article
      * @param page
      * @param limit
+     * @return
      */
-    public void loadArticleList(Article article, Integer page, Integer limit) {
+    public List<ViewArticle> loadArticleList(Article article, Integer page, Integer limit) {
 
-        articleMapper.selectArticleList(article,page,limit);
+        return articleMapper.selectArticleList(article,page,limit);
 
     }
 
@@ -47,5 +54,14 @@ public class ArticleService {
         articleMapper.insertArticle(article);
 
         return article.getId();
+    }
+
+    public int changeArticleAttr(Article article) {
+       return articleMapper.updateArticleAttr(article);
+    }
+
+
+    public int delArticleById(Article article) {
+        return articleMapper.deleteArticleById(article);
     }
 }

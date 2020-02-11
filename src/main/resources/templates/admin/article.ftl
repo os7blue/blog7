@@ -54,12 +54,6 @@
             </div>
         </fieldset>
 
-        <script type="text/html" id="toolbarDemo">
-            <div class="layui-btn-container">
-                <button class="layui-btn layui-btn-sm data-add-btn"> 添加用户 </button>
-                <button class="layui-btn layui-btn-sm layui-btn-danger data-delete-btn"> 删除用户 </button>
-            </div>
-        </script>
 
         <table class="layui-hide" id="articleTable" lay-filter="articleTable"></table>
 
@@ -70,6 +64,27 @@
 
     </div>
 </div>
+
+
+<script type="text/html" id="commentSwitchChange">
+    <input type="checkbox" name="{{d.id}}-commentSwitch" lay-filter="ccs" value="1" {{ d.commentSwitch == 1 ? 'checked':''}} lay-skin="switch" lay-text="允许评论|禁止评论" >
+</script>
+<script type="text/html" id="statusChange">
+    <form  class="layui-form">
+
+        <input type="radio" lay-filter="asId" name="{{d.id}}-status" value="0" title="禁用" {{ d.status == 0 ? 'checked':'' }}
+        >
+        <input type="radio" lay-filter="asId" name="{{d.id}}-status" value="1" title="启用" {{ d.status == 1 ? 'checked':'' }}
+        >
+        <input type="radio" lay-filter="asId" name="{{d.id}}-status" value="2" title="草稿" {{ d.status == 2 ? 'checked':'' }}
+        >
+
+
+
+    </form>
+
+</script>
+
 <script src="/admin/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 <script>
     layui.use(['form', 'table'], function () {
@@ -78,10 +93,13 @@
             table = layui.table,
             layuimini = layui.layuimini;
 
-        table.render({
+        var articleTable = table.render({
             elem: '#articleTable',
             url: '/admin/article/load',
-            toolbar: '#toolbarDemo',
+            method:"post",
+            response:{
+                statusCode:1
+            },
             defaultToolbar: ['filter', 'exports', 'print', {
                 title: '提示',
                 layEvent: 'LAYTABLE_TIPS',
@@ -101,11 +119,11 @@
                         return time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日 星期" + (time.getDay() + 1) + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
 
                     }},
-                {field: 'commentSwitch', width: 80, title: '评论开关'},
+                {field: 'commentSwitch', width: 180, title: '评论开关',templet:"#commentSwitchChange"},
                 {field: 'remark', width: 80, title: '备注'},
                 {field: 'views', width: 135, title: '浏览次数', sort: true},
                 {field: 'label', width: 135, title: '标签', sort: true},
-                {field: 'status', width: 135, title: '状态', sort: true},
+                {field: 'status', width: 135, title: '状态', sort: true,templet:"#statusChange"},
                 {field: 'parentName', width: 135, title: '分类', sort: true},
                 {field: 'commentTotal', width: 135, title: '评论数', sort: true},
                 {title: '操作', minWidth: 150, toolbar: '#currentTableBar', fixed: "right", align: "center"}
@@ -115,80 +133,91 @@
             page: true
         });
 
-        // 监听搜索操作
-        form.on('submit(data-search-btn)', function (data) {
-            var result = JSON.stringify(data.field);
-            layer.alert(result, {
-                title: '最终的搜索信息'
-            });
 
-            //执行搜索重载
-            table.reload('currentTableId', {
-                page: {
-                    curr: 1
-                }
-                , where: {
-                    searchParams: result
-                }
-            }, 'data');
+        //监听表格操作
+        table.on('tool(articleTable)', function(obj) {
 
-            return false;
-        });
+            let data = obj.data;
 
-        // 监听添加操作
-        $(".data-add-btn").on("click", function () {
 
-            var index = layer.open({
-                title: '添加用户',
-                type: 2,
-                shade: 0.2,
-                maxmin:true,
-                shadeClose: true,
-                area: ['100%', '100%'],
-                content: '/page/table/add.html',
-            });
-            $(window).on("resize", function () {
-                layer.full(index);
-            });
 
-            return false;
-        });
+            switch (obj.event) {
+                case 'delete':
 
-        // 监听删除操作
-        $(".data-delete-btn").on("click", function () {
-            var checkStatus = table.checkStatus('currentTableId')
-                , data = checkStatus.data;
-            layer.alert(JSON.stringify(data));
-        });
+                    layer.open({
+                        content:'确认删除文章['+data.title+']吗？',
+                        btn:['确认','取消'],
+                        yes:function (index,layero) {
 
-        //监听表格复选框选择
-        table.on('checkbox(currentTableFilter)', function (obj) {
-            console.log(obj)
-        });
+                            layer.msg("正在删除文章["+data.title+"中]");
 
-        table.on('tool(currentTableFilter)', function (obj) {
-            var data = obj.data;
-            if (obj.event === 'edit') {
+                            $.post('/admin/article/delete',{id:data.id},function (res) {
+                                if (res.code===1){
+                                    layer.close(index);
+                                    layer.msg("删除文章["+data.title+"]成功");
+                                    articleTable.reload();
+                                }else {
+                                    layer.msg('删除文章["+data.title+"]失败或发生错误，请检查后重试');
+                                }
+                            });
+                        },
+                        btn2:function (index,layero) {
 
-                var index = layer.open({
-                    title: '编辑用户',
-                    type: 2,
-                    shade: 0.2,
-                    maxmin:true,
-                    shadeClose: true,
-                    area: ['100%', '100%'],
-                    content: '/page/table/edit.html',
-                });
-                $(window).on("resize", function () {
-                    layer.full(index);
-                });
-                return false;
-            } else if (obj.event === 'delete') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del();
-                    layer.close(index);
-                });
+                        }
+                    });
+
+
+
+                    break;
+                case 'update':
+
+
+                    break;
             }
+        });
+            //监听单元格中的评论开关
+        form.on('switch(ccs)', function(data){
+            // console.log(data.elem); //得到checkbox原始DOM对象
+            // console.log(data.elem.checked); //开关是否开启，true或者false
+            // console.log(data.value); //开关value值，也可以通过data.elem.value得到
+            // console.log(data.othis); //得到美化后的DOM对象
+
+            data.elem.checked? layer.msg("开启该文章评论中"):layer.msg("禁止该文章评论中");
+
+
+            let articleId = data.elem.name.split("-")[0];
+            let commentSwitch = data.elem.checked?1:0;
+
+            $.post("/admin/article/modify",{id:articleId,commentSwitch:commentSwitch},function (res) {
+                if(res.code===1){
+                    layer.msg(data.elem.checked?'开启评论成功':'禁止评论成功')
+
+                }else {
+                    layer.msg(data.elem.checked?'开启评论失败，请重试':'禁止评论失败，请重试')
+                }
+            })
+
+        });
+
+
+        //监听单元格中改变文章状态的单选按钮
+        form.on('radio(asId)', function(data){
+            // console.log(data.elem); //得到radio原始DOM对象
+            // console.log(data.value); //被点击的radio的value值
+            layer.msg("正在修改状态");
+
+
+            let articleId = data.elem.name.split("-")[0];
+            let articleStatus = data.value;
+
+            $.post("/admin/article/modify",{id:articleId,status:articleStatus},function (res) {
+                if(res.code===1){
+                    layer.msg("修改状态成功");
+                }else {
+                    layer.msg("修改失败，请重试")
+                }
+            })
+
         });
 
     });

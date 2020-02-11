@@ -27,17 +27,68 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+
     /**
-     *
-     * @param article 搜索条件，可为空
+     * 删除文章
+     * @param article
+     * @return
+     */
+    @PostMapping("/delete")
+    public ReturnModel delete(Article article){
+
+        var rm = new ReturnModel();
+        rm.setCode(1);
+
+        int row = articleService.delArticleById(article);;
+
+        if (row==0){
+            rm.setCode(0);
+        }
+
+        return rm;
+
+    }
+
+    /**
+     * 修改文章中的某些属性 如评论开关等
+     * @param article
+     * @return
+     */
+    @PostMapping("/modify")
+    public ReturnModel modify(Article article){
+
+        var rm = new ReturnModel();
+        rm.setCode(1);
+
+        int row = articleService.changeArticleAttr(article);
+
+        if (row==0){
+            rm.setCode(0);
+        }
+
+        return rm;
+
+    }
+
+    /**
+     *  @param article 搜索条件，可为空
      * @param page    第几页
      * @param limit   查几条
+     * @return
      */
     @PostMapping("/load")
-    public void load(Article article,Integer page,Integer limit){
+    public ReturnModel load(Article article, Integer page, Integer limit){
 
-        articleService.loadArticleList(article,page,limit);
+        var rm = new ReturnModel();
+        rm.setCode(1);
 
+        int count = articleService.getArticleCount();
+        var list = articleService.loadArticleList(article,page,limit);
+
+        rm.setCount(count);
+        rm.setData(list);
+
+        return rm;
 
 
     }
@@ -54,7 +105,10 @@ public class ArticleController {
         return rm;
 
 
-
-
     }
+
+
+
+
+
 }
