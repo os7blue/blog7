@@ -4,9 +4,12 @@ import com.os7blue.blog7.entity.Article;
 import com.os7blue.blog7.entity.ReturnModel;
 import com.os7blue.blog7.service.ArticleService;
 import lombok.var;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
 * @Description:     文章管理
@@ -26,6 +29,9 @@ public class ArticleController {
     public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
+
+
+
 
 
     /**

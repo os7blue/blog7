@@ -58,7 +58,7 @@
         <table class="layui-hide" id="articleTable" lay-filter="articleTable"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a class="layui-btn layui-btn-xs data-count-edit" lay-event="edit">编辑</a>
+            <a href="javascript:;"  class="layui-btn layui-btn-xs data-count-edit" lay-event="edit" data-iframe-tab="/admin/article/edit/{{d.id}}" data-title="编辑文章{{d.id}}" data-icon="fa fa-gears">编辑</a>
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
 
@@ -67,10 +67,13 @@
 
 
 <script type="text/html" id="commentSwitchChange">
-    <input type="checkbox" name="{{d.id}}-commentSwitch" lay-filter="ccs" value="1" {{ d.commentSwitch == 1 ? 'checked':''}} lay-skin="switch" lay-text="允许评论|禁止评论" >
+    <form class="layui-form" lay-filter = "{{d.id}}-checkBoxForm">
+        <input type="checkbox" title="" name="{{d.id}}-commentSwitch" lay-filter="ccs" value="1" {{ d.commentSwitch == 1 ? 'checked':''}} lay-skin="switch" lay-text="允许评论|禁止评论" >
+        <input type="text" title="" name="title" value="{{d.title}}"  style="display: none;">
+    </form>
 </script>
 <script type="text/html" id="statusChange">
-    <form  class="layui-form">
+    <form  class="layui-form" lay-filter = "{{d.id}}-radioForm">
 
         <input type="radio" lay-filter="asId" name="{{d.id}}-status" value="0" title="禁用" {{ d.status == 0 ? 'checked':'' }}
         >
@@ -79,6 +82,10 @@
         <input type="radio" lay-filter="asId" name="{{d.id}}-status" value="2" title="草稿" {{ d.status == 2 ? 'checked':'' }}
         >
 
+        <input type="text" name="title" value="{{d.title}}" title="草稿" style="display: none;"
+        >
+
+
 
 
     </form>
@@ -86,8 +93,9 @@
 </script>
 
 <script src="/admin/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/admin/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table'], function () {
+    layui.use(['form', 'table','layuimini'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table,
@@ -133,7 +141,6 @@
             page: true
         });
 
-
         //监听表格操作
         table.on('tool(articleTable)', function(obj) {
 
@@ -145,19 +152,30 @@
                 case 'delete':
 
                     layer.open({
+                        icon:3,
                         content:'确认删除文章['+data.title+']吗？',
                         btn:['确认','取消'],
                         yes:function (index,layero) {
 
-                            layer.msg("正在删除文章["+data.title+"中]");
+
+
+                            layer.msg("正在删除文章["+data.title+"]", {
+                                icon: 7,
+                                time: 77777
+                            });
 
                             $.post('/admin/article/delete',{id:data.id},function (res) {
+                                layer.close(layer.index);
                                 if (res.code===1){
                                     layer.close(index);
-                                    layer.msg("删除文章["+data.title+"]成功");
+                                    layer.msg("删除文章["+data.title+"]成功", {
+                                        icon: 1
+                                    });
                                     articleTable.reload();
                                 }else {
-                                    layer.msg('删除文章["+data.title+"]失败或发生错误，请检查后重试');
+                                    layer.msg('删除文章["+data.title+"]失败或发生错误，请检查后重试', {
+                                        icon: 2
+                                    });
                                 }
                             });
                         },
@@ -169,7 +187,10 @@
 
 
                     break;
-                case 'update':
+                case 'edit':
+
+                    layuimini.hash('/admin/article');
+
 
 
                     break;
@@ -182,18 +203,36 @@
             // console.log(data.value); //开关value值，也可以通过data.elem.value得到
             // console.log(data.othis); //得到美化后的DOM对象
 
-            data.elem.checked? layer.msg("开启该文章评论中"):layer.msg("禁止该文章评论中");
+
 
 
             let articleId = data.elem.name.split("-")[0];
             let commentSwitch = data.elem.checked?1:0;
+            let articleTitle = form.val(articleId+"-checkBoxForm").title;
+
+            data.elem.checked?
+                layer.msg("正在启用文章["+articleTitle+"]的评论功能",
+                    {
+                        icon: 7,
+                        time: 77777
+                    })
+                :
+                layer.msg("正在禁止文章["+articleTitle+"]的评论功能", {
+                    icon: 7,
+                    time: 77777
+                });
 
             $.post("/admin/article/modify",{id:articleId,commentSwitch:commentSwitch},function (res) {
+                layer.close(layer.index);
                 if(res.code===1){
-                    layer.msg(data.elem.checked?'开启评论成功':'禁止评论成功')
+                    layer.msg(data.elem.checked?'已启用文章['+articleTitle+']的评论功能':'已禁用文章['+articleTitle+']的评论功能', {
+                        icon: 1
+                    })
 
                 }else {
-                    layer.msg(data.elem.checked?'开启评论失败，请重试':'禁止评论失败，请重试')
+                    layer.msg(data.elem.checked?'启用文章['+articleTitle+']的评论功能失败，请重试':'禁用文章['+articleTitle+']的评论功能失败，请重试', {
+                        icon: 2
+                    })
                 }
             })
 
@@ -202,19 +241,50 @@
 
         //监听单元格中改变文章状态的单选按钮
         form.on('radio(asId)', function(data){
+
             // console.log(data.elem); //得到radio原始DOM对象
             // console.log(data.value); //被点击的radio的value值
-            layer.msg("正在修改状态");
 
 
             let articleId = data.elem.name.split("-")[0];
             let articleStatus = data.value;
+            let articleTitle = form.val(articleId+"-radioForm").title;
+            let player = "";
+
+            switch (articleStatus) {
+                case '0':
+                    player="禁用";
+                    break;
+                case '1':
+                    player="启用";
+                    break;
+                case '2':
+                    player="草稿";
+                    break;
+            }
+
+
+
+
+            layer.msg("正在修改文章["+articleTitle+"]状态为"+player, {
+                icon: 7,
+                time: 77777
+            });
+
+
+
+
 
             $.post("/admin/article/modify",{id:articleId,status:articleStatus},function (res) {
+                layer.close(layer.index);
                 if(res.code===1){
-                    layer.msg("修改状态成功");
+                    layer.msg("已修改文章["+articleTitle+"]状态为"+player,{
+                        icon:1
+                    });
                 }else {
-                    layer.msg("修改失败，请重试")
+                    layer.msg("修改文章["+articleTitle+"]状态为"+player+"出错，请稍后再试",{
+                        icon:2
+                    })
                 }
             })
 

@@ -13,11 +13,17 @@
 <div class="layuimini-container">
     <div class="layuimini-main">
 
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>正在编辑原名为：[${article.title}]的文章</legend>
+        </fieldset>
+
         <form class="layui-form" action="">
             <div class="layui-form-item">
                 <label class="layui-form-label">文章标题</label>
                 <div class="layui-input-block">
-                    <input type="text" name="title" lay-verify="title|required" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    <input type="text" name="id"  value="${article.id}"  class="layui-input" style="display: none">
+
+                    <input type="text" name="title"  value="${article.title}" lay-verify="title|required" autocomplete="off" placeholder="请输入标题" class="layui-input">
                 </div>
             </div>
 
@@ -25,7 +31,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">评论开关</label>
                     <div class="layui-input-inline">
-                        <input type="checkbox" name="commentSwitch" value="1" lay-skin="switch" lay-text="允许评论|禁止评论" checked>
+                        <input type="checkbox" name="commentSwitch" value="1" lay-skin="switch" lay-text="允许评论|禁止评论" ${(article.commentSwitch==1)?string('checked','')}>
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -53,7 +59,7 @@
                         </div>
                     </div>
                     <div class="layui-input-inline" >
-                        <img class="layui-upload-img" id="demo1" style="width: 190px;height: 156px;">
+                        <img class="layui-upload-img" id="demo1" src="${article.titleImg}" style="width: 190px;height: 156px;">
                         <p id="demoText"></p>
                     </div>
                 </div>
@@ -66,7 +72,8 @@
 
 
             <div class="layui-form-item">
-                <div id="editor" style="margin: 50px 0 50px 0">
+                <div id="editor" style="margin: 50px 0 50px 0" >
+                    <p>${article.content}</p>
                 </div>
             </div>
 
@@ -98,6 +105,9 @@
             upload = layui.upload,
             form=layui.form,
             element=layui.element;
+
+
+
 
         //封面图上传配置
         let titlePic = "/res/images/code.png";

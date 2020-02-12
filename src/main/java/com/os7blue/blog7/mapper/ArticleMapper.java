@@ -28,4 +28,7 @@ public interface ArticleMapper {
 
     @Delete("DELETE FROM b7_article WHERE id = #{id}")
     int deleteArticleById(Article article);
+
+    @Select("SELECT * FROM b7_article WHERE id = #{id}")
+    Article selectArticleById(Integer id);
 }

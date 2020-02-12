@@ -64,4 +64,9 @@ public class ArticleService {
     public int delArticleById(Article article) {
         return articleMapper.deleteArticleById(article);
     }
+
+    public Article loadArticleById(Integer id) {
+
+        return articleMapper.selectArticleById(id);
+    }
 }

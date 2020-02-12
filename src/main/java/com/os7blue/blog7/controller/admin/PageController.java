@@ -1,8 +1,15 @@
 package com.os7blue.blog7.controller.admin;
 
+import com.os7blue.blog7.entity.Article;
+import com.os7blue.blog7.service.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Map;
 
 
 /**
@@ -17,6 +24,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class PageController {
+
+    private final ArticleService articleService;
+
+    public PageController(ArticleService articleService) {
+        this.articleService = articleService;
+    }
+
+
+    @GetMapping("/article/edit/{id}")
+    public String edit(@PathVariable Integer id, Map<String,Object> model){
+
+        Article article = articleService.loadArticleById(id);
+        model.put("article",article);
+
+        return"admin/edit";
+    }
 
     /**
      * index
