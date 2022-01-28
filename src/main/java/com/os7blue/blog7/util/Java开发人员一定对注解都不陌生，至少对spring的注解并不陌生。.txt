@@ -1,0 +1,144 @@
+这是一个系列，整个系列是spring boot使用注解形式实现前后端分离jwt（json web token）验证。
+
+今天先记录一下java自定义注解
+
+Java开发人员一定对注解都不陌生，至少对spring的注解并不陌生。
+Java 注解（Annotation）是 JDK5.0 引入的一种注释机制。
+Java 中的类、方法、变量、参数和包都可以使用注解标注。
+但又和普通的注释不同，注解可以通过反射获取被标注的内容，当然也可以只当做一个普通的注释来做标记使用。
+
+比方说下面这个大家熟悉的java自己定义的注解：
+@Override 这个不用多说，方法重写的注解，大家都很熟悉。在继承父类重写方法或实现接口时会使用。
+
+使用注解除了可以减少很多重复的代码之外，也能起到标注作用，最起码看着也舒服不是。
+
+如何自定义注解，需要讲三个方面：1>创建方式，2>元注解，3>属性（成员变量）：
+
+1>创建方式：
+
+创建自定义注解和创建interface类似，只不过是把interface换成了@interface,下面贴一个我自己定义的注解例子：
+/**
+ * 自定义jwt token注解
+ * @author codecv
+ */
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface JwtToken {
+    //用户身份
+    UserIdentity userIdentity() default UserIdentity.VISITORS_USER;
+
+}
+
+
+2>元注解：
+第一步中的例子中所使用的注解就是自定义注解的关键：java中提供的元注解。
+元注解是Java中用来定义注解的注解。
+就是Java提供的让你用注解的方式去自定义注解的东西。
+
+元注解有五个：
+
+@Retention 用来标注所定义的注解在什么时候起作用，使用该注解需要传入RetentionPolicy枚举参数，参数一看就知道是什么意思：
+
+RetentionPolicy.SOURCE 注解在源代码中起作用，也就是普通的标识作用。
+RetentionPolicy.CLASS 注解在编译过程中起作用。
+RetentionPolicy.RUNTIME 注解在程序运行的时候起作用。
+
+
+@Documented 用该注解所标注元素JavaDoc
+
+@Target 用来标注所定义的注解可以用在什么地方，需要传入ElementType枚举参数，也是一看就知道参数是什么意思：
+
+ElementType.ANNOTATION_TYPE 在注解上使用
+ElementType.CONSTRUCTOR 在构造方法上使用
+ElementType.FIELD 在属性（成员变量）上使用
+ElementType.LOCAL_VARIABLE 在局部变量上使用
+ElementType.METHOD 在方法进上使用
+ElementType.PACKAGE 在package-info.java中使用
+ElementType.PARAMETER 在方法内参数上使用
+ElementType.TYPE 在一个类上使用，比如类、接口、枚举。
+
+@Inherited 用来标注被注解的类的子类继承父类的注解。
+
+@Repeatable 这个注解是在在java8中加入的，顾名思义，就是可以在一个元素上重复使用的意思，比如你要对一个元素标注多个属性，使用该注解需要再定义一个容器注解。
+
+
+3>属性（成员变量）：
+
+就像第二步里所讲到的使用元注解要传入的参数，这些参数都是所定义注解的属性（成员变量）
+
+就像@RequestMapping()一样，你可以规定使用注解时要传入的参数，你可以使用传入的参数进行一些扩展操作。
+
+重点记住；注解的属性（成员变量），只能使用基本数据类型（包括基本数据类型的数组）和类、接口、注解。
+
+
+自定义注解的步骤讲完了，结合前面给的例子，都是大白话，通俗易懂。
+
+一些格式的用法：
+    如果注解只有一个属性（成员变量）并且属性名（成员变量）为value，可以使用@注解名（属性值）的格式，如@PostMapping("url"),其等效于：@PostMapping(value = "url") 
+    如果注解没有属性（成原变量），可以使用@注解名 不加小括号的格式，如@Controller,其等效于@Controller()
+    如果注解的某个属性（成员变量）是一个数组，这个属性有时候你只需要传入一个值。可以使用@注解名（属性名=属性值的方式），其等效于：@注解名（属性名={属性值}）
+
+说完了自定义注解，接下来该说说怎么使用注解，这里举例说明比如我们要通过注解判断一个user的年龄属性是否符合我的要求：
+
+    创建一个自定义注解，其属性为最大年龄：
+
+@Target({ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface MaxAge {
+    int max() default 100;
+}
+
+创建一个user类并在age属性上使用上面定义的@MaxAge注解并填写属性（这里为了方便演示成员变量使用public修饰）：
+   public class User {
+
+
+    public String name;
+
+    @MaxAge(max = 50)
+    public int age;
+
+    public User() {
+    }
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+让我们来测试一下：
+    
+    利用反射机制解析注解。
+    java反射的相关知识，这里不多做赘述，百度一搜一大堆。
+
+    编写如下代码测试自定义的注解是否生效：
+
+    public class TestAnnotation {
+
+    public static void main(String[] args) throws NoSuchFieldException {
+
+        //实例化一个user
+        User user = new User("小明",14);
+
+        //获取user的class
+        Class clazz = user.getClass();
+
+        //判断user的age属性上是否使用了@MaxAge注解
+        if (clazz.getField("age").isAnnotationPresent(MaxAge.class)){
+
+            //获取到注解和我们使用注解传入的注解属性
+            MaxAge maxAge = (MaxAge) clazz.getField("age").getAnnotation(MaxAge.class);
+            System.out.println("获取使用注解时传递的属性："+maxAge.max());
+
+            //获得了参数和使用注解是所设置的最大年龄属性，你就可以在这里判断年龄的属性值是否符合你的你要了
+        }
+
+    }
+}
+    
+
+    
+
+
