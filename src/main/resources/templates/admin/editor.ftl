@@ -6,8 +6,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="/admin/layuimini/css/public.css" media="all">
+    <link rel="stylesheet" href="/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuimini/css/public.css" media="all">
 </head>
 <body>
 <div class="layuimini-container">
@@ -22,12 +22,7 @@
             </div>
 
             <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label">评论开关</label>
-                    <div class="layui-input-inline">
-                        <input type="checkbox" name="commentSwitch" value="1" lay-skin="switch" lay-text="允许评论|禁止评论" checked>
-                    </div>
-                </div>
+
                 <div class="layui-inline">
                     <label class="layui-form-label">分类选择</label>
                     <div class="layui-input-inline">
@@ -39,6 +34,27 @@
 
                     </div>
                 </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-inline">
+
+                        <select name="status" lay-verify="">
+                            <option value="0" >禁用</option>
+                            <option value="1" >启用</option>
+                            <option value="2" >草稿</option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">评论开关</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="commentSwitch" value="1" lay-skin="switch" lay-text="允许评论|禁止评论" checked>
+                    </div>
+                </div>
+
             </div>
 
 
@@ -88,8 +104,8 @@
 
 
 <!-- 注意， 只需要引用 JS，无需引用任何 CSS ！！！-->
-<script src="/admin/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="/admin/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script type="text/javascript">
     layui.use(['layer','wangEditor','form','upload','jquery','element'], function () {
         var $ = layui.jquery,
@@ -226,7 +242,8 @@
                 titleImg    :   titlePic,
                 content     :   editor.txt.html(),
                 parentId    :   data.field.parentId,
-                commentSwitch : data.field.commentSwitch
+                commentSwitch : data.field.commentSwitch,
+                status      :   data.field.status
             };
 
             $.post("/admin/article/create",param,function (res) {

@@ -6,8 +6,8 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/admin/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
-    <link rel="stylesheet" href="/admin/layuimini/css/public.css" media="all">
+    <link rel="stylesheet" href="/layuimini/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="/layuimini/css/public.css" media="all">
 </head>
 <body>
 <div class="layuimini-container">
@@ -15,40 +15,44 @@
 
         <fieldset class="table-search-fieldset">
             <legend>搜索信息</legend>
-            <div style="margin: 10px 10px 10px 10px">
+            <div style=" margin: 10px 10px 10px 10px">
                 <form class="layui-form layui-form-pane" action="">
                     <div class="layui-form-item">
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户姓名</label>
+                            <label class="layui-form-label">标题/内容</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="username" autocomplete="off" class="layui-input">
+                                <input type="text" name="content" autocomplete="off" class="layui-input">
                             </div>
                         </div>
+
                         <div class="layui-inline">
-                            <label class="layui-form-label">用户性别</label>
+                            <label class="layui-form-label">分类</label>
                             <div class="layui-input-inline">
-                                <input type="text" name="sex" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户城市</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="city" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">用户职业</label>
-                            <div class="layui-input-inline">
-                                <input type="text" name="classify" autocomplete="off" class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <select name="city" lay-verify="">
-                                <option value="">请选择一个城市</option>
+
+                            <select name="parentId" lay-verify="">
+                                <option value>请选择一个城市</option>
                                 <option value="010">北京</option>
                                 <option value="021">上海</option>
                                 <option value="0571">杭州</option>
-                            </select>                           </div>
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日期</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="createTime" name="createTime" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-inline">
+
+                            <button type="submit" style="" class="layui-btn layui-btn-primary" lay-submit  lay-filter="data-search-btn"><i class="layui-icon"></i> 搜 索 (搜索条件可以留空)</button>
+
+
+                        </div>
                     </div>
                 </form>
             </div>
@@ -58,7 +62,8 @@
         <table class="layui-hide" id="articleTable" lay-filter="articleTable"></table>
 
         <script type="text/html" id="currentTableBar">
-            <a href="javascript:;"  class="layui-btn layui-btn-xs data-count-edit" lay-event="edit" data-iframe-tab="/admin/article/edit/{{d.id}}" data-title="编辑文章{{d.id}}" data-icon="fa fa-gears">编辑</a>
+            <a href="javascript:;" class="layui-btn layui-btn-xs data-count-edit" layuimini-content-href="/admin/article/edit/{{d.id}}" data-title="编辑文章{{d.id}}" >编辑</a>
+
             <a class="layui-btn layui-btn-xs layui-btn-danger data-count-delete" lay-event="delete">删除</a>
         </script>
 
@@ -92,14 +97,26 @@
 
 </script>
 
-<script src="/admin/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
-<script src="/admin/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+<script src="/layuimini/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script src="/layuimini/js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 <script>
-    layui.use(['form', 'table','layuimini'], function () {
+    layui.use(['form', 'table','miniTab','laydate'], function () {
         var $ = layui.jquery,
             form = layui.form,
             table = layui.table,
-            layuimini = layui.layuimini;
+            laydate=layui.laydate,
+            miniTab = layui.miniTab;
+
+            miniTab.listen();
+
+
+        /**
+         * 渲染日期选择框
+         */
+        laydate.render({
+            elem: '#createTime',
+        });
+
 
         var articleTable = table.render({
             elem: '#articleTable',
@@ -187,13 +204,6 @@
 
 
                     break;
-                case 'edit':
-
-                    layuimini.hash('/admin/article');
-
-
-
-                    break;
             }
         });
             //监听单元格中的评论开关
@@ -235,6 +245,29 @@
                     })
                 }
             })
+
+        });
+
+        form.on('submit(data-search-btn)', function (data) {
+            let param = data.field;
+            let parentId = param.parentId;
+            let createTime;
+
+            if (param.createTime!==null&&param.createTime!==""){
+                createTime = new Date(param.createTime).getTime();
+            }
+
+            console.log(param);
+
+            table.reload("articleTable", {
+                where:{
+                    createTime :    createTime,
+                    parentId   :    parentId,
+                    content    :    param.content
+                }
+            });
+
+            return false;
 
         });
 

@@ -30,6 +30,11 @@ spring:
     expose-session-attributes: false
     expose-spring-macro-helpers: false
     suffix: .ftl
+    settings:
+      template_exception_handler: com.os7blue.blog7.erroractive.FreemarkerExceptionHandler
+
+
+
 
 
 
